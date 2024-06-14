@@ -7,14 +7,17 @@ use App\Http\Controllers\LoginController; // Asegúrate de importar el controlad
 Route::view('/', 'login')->name('login');
 
 // Ruta para mostrar la página de registro
-Route::view('/registro', 'registro')->name('registro');
+// Route::view('/registro', 'registro')->name('registro');
 
 // Ruta para mostrar la página privada (necesitarás protegerla con middleware más adelante)
 Route::view('/privado', 'secret')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('privada');
 
+Route::view('/usuario', 'user')->middleware("auth") //middleware seguridad para que entren si o si por login
+->name('user');
+
 // Ruta para manejar el registro de usuarios
-Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
+// Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 
 // Ruta para manejar el inicio de sesión
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
