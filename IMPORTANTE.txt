@@ -1,0 +1,24 @@
+PARA QUE EL PROYCTO TE FUNCIONE DEBES TENER EN CUENTA ESTO PASOS
+
+
+GIT CLONE : link del proyecto
+
+
+copiar env.example    y pegalo y cambiarle el nombre  a env
+composer install.
+composer install.
+php artisan key:generate
+
+con estos pasos ya el proyecto debe funcionar
+
+
+
+
+
+CON ESTOS COMANDO EJECUTAMOS LA BASE DE DATOS Y LOS DATOS 
+php artisan migrate
+php artisan db:seed
+
+
+
+
