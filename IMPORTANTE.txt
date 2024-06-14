@@ -1,0 +1,41 @@
+PARA QUE EL PROYCTO TE FUNCIONE DEBES TENER EN CUENTA ESTO PASOS
+
+
+GIT CLONE : link del proyecto
+
+abre el proyecto con visual studio   
+
+copiar env.example    y pegalo y cambiarle el nombre  a .env
+
+luego abre la consola de visual studio  con control + ñ  , y ejecuta estos comandos
+
+composer install.
+composer install.
+php artisan key:generate
+
+con estos pasos ya el proyecto debe funcionar
+
+
+
+CON ESTOS COMANDO EJECUTAMOS LA BASE DE DATOS Y LOS DATOS 
+php artisan migrate
+php artisan db:seed
+
+
+
+debes tener en cuenta que en el momento solo tenemos dos ramas 
+la rama main 
+la rama inicio-session : en esta rama se implemento login con los dos roles 
+
+
+cuando descargues el proyecto solo veras la rama main , si quieres ver otra ramas
+debes ejecutar este comandos
+abre la consola consola en visual studio control +  ñ y escribe estos
+git checkout (el nombre de la rama)
+
+IMPORTANTE DEBES TENER LA GIT intalado 
+
+
+
+
+
