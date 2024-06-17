@@ -53,8 +53,17 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
+
+    outline: 0 none;
   }
-  
+  input:focus, input[type]:focus {
+    border-color: rgb(232, 118, 4);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075)inset, 0 0 8px rgba(255,144,0,0.6);
+    outline: 0 none;
+}
+
+
+
   .btn {
     display: block;
     width: 100%;
