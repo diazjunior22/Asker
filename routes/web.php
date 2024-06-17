@@ -10,10 +10,10 @@ Route::view('/', 'login')->name('login');
 // Route::view('/registro', 'registro')->name('registro');
 
 // Ruta para mostrar la página privada (necesitarás protegerla con middleware más adelante)
-Route::view('/privado', 'secret')->middleware("auth") //middleware seguridad para que entren si o si por login
+Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('privada');
 
-Route::view('/usuario', 'user')->middleware("auth") //middleware seguridad para que entren si o si por login
+Route::view('/usuario', 'user.user')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
 
 // Ruta para manejar el registro de usuarios
