@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>AQUI ES EL APARTADO DE USUARIO</h1>
+    <h1>AQUI ES EL APARTADO DE CAJERO</h1>
 </body>
 </html>

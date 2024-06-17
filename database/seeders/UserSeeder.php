@@ -29,6 +29,13 @@ class UserSeeder extends Seeder
             'password' => Hash::make('diazjunior22'),
             // Agrega cualquier otro campo requerido por tu tabla de usuarios
         ]);
+        User::create([
+            'name' => 'james',
+            'email' =>  "james@gmail.com",
+            'role' => 'cajero',
+            'password' => Hash::make('diazjunior22'),
+            // Agrega cualquier otro campo requerido por tu tabla de usuarios
+        ]);
 
 
 
