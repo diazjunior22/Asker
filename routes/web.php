@@ -15,6 +15,9 @@ Route::view('/privado', 'admin.secret')->middleware("auth") //middleware segurid
 
 Route::view('/usuario', 'user.user')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
+Route::view('/cajero', 'cajero.cajero')->middleware("auth") 
+->name('cajero');
+
 
 // Ruta para manejar el registro de usuarios
 // Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
