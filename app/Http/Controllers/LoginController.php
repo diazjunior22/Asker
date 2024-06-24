@@ -21,24 +21,24 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    // public function register(Request $request)
-    // {
-    //     // $request->validate([
-    //     //     'name' => 'required|string|max:255',
-    //     //     'email' => 'required|string|email|max:255|unique:users',
-    //     //     'password' => 'required|string|min:8|confirmed',
-    //     // ]);
+    public function register(Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:8|confirmed',
+        // ]);
 
-    //     $user = new User();
-    //     $user->email = $request->email;
-    //     $user->password = Hash::make($request->password);
-    //     $user->name = $request->name;
+        $user = new User();
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->name = $request->name;
 
-    //     // $user->role = 'mesero'; // Puedes ajustar el rol aquí según tus necesidades
-    //     $user->save();
-    //     Auth::login($user);
-    //     return redirect(route("privada"));
-    // }
+        // $user->role = 'mesero'; // Puedes ajustar el rol aquí según tus necesidades
+        $user->save();
+        Auth::login($user);
+        return redirect(route("privada"));
+    }
 
     public function login(Request $request)
     {

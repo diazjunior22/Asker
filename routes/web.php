@@ -20,7 +20,7 @@ Route::view('/cajero', 'cajero.cajero')->middleware("auth")
 
 
 // Ruta para manejar el registro de usuarios
-// Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
+Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 
 // Ruta para manejar el inicio de sesión
 Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-sesion');
