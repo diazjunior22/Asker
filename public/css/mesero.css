@@ -1,0 +1,121 @@
+body {
+    background-image: url("/img/fondo1HD.jpeg");
+    background-attachment: fixed; /* Esta propiedad hace que el fondo sea estático */
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 20px auto;
+  }
+  
+  .product {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0);
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  .product:hover {
+    transform: translateY(-5px);
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0);
+
+  }
+  
+  .info {
+    padding: 15px;
+  }
+  
+  .info h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+  }
+  
+  .info p {
+    color: #666;
+  }
+  
+  .info a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #eb6702;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .info a:hover {
+    background-color: #552900;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .menu-title {
+    flex: 1; /* Ocupa todo el espacio disponible */
+  }
+  
+  .menu {
+    text-align: right;
+  }
+  
+  .menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu ul li {
+    display: inline;
+  }
+  
+  .menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin-right: 20px; /* Ajuste el margen derecho según tu preferencia */
+  }
+  
+  .menu ul li a:hover {
+    background-color: #555;
+  }
+  
