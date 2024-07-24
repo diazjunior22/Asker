@@ -26,7 +26,7 @@
           <div class="info">
             <h2>Nombre del Producto 1</h2>
             <p>Descripción corta del producto.</p>
-            <a href="{{route("comidas")}}">Ordenar</a>
+            <a href="producto1.html">Ordenar</a>
           </div>
         </div>
       
