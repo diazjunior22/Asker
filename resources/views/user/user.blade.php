@@ -9,8 +9,7 @@
 
 </head>
 <body>
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
             <a href="#" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 Página de usuario @auth {{Auth::user()->name}}  @endauth
             </a>
@@ -19,8 +18,7 @@
                     <button type="button" class="btn btn-outline-primary me-2">Salir</button>
                 </a>
             </div>
-        </header>
-    </div>
+    </header>
 
     <div class="container">
         <div class="product">
@@ -32,52 +30,10 @@
           </div>
         </div>
       
-        <div class="product">
-          <img src="img/mesita.png" alt="Producto 2">
-          <div class="info">
-            <h2>Nombre del Producto 2</h2>
-            <p>Descripción corta del producto.</p>
-            <a href="ordenar.blade.php">Ordenar</a>
-          </div>
-        </div>
 
-        <div class="container">
-            <div class="product">
-              <img src="img/mesita.png" alt="Producto 1">
-              <div class="info">
-                <h2>Nombre del Producto 1</h2>
-                <p>Descripción corta del producto.</p>
-                <a href="producto1.html">Ordenar</a>
-              </div>
-            </div>
-          
-            <div class="product">
-              <img src="img/mesita.png" alt="Producto 2">
-              <div class="info">
-                <h2>Nombre del Producto 2</h2>
-                <p>Descripción corta del producto.</p>
-                <a href="producto2.html">Ordenar</a>
-              </div>
-            </div>
 
-            <div class="container">
-                <div class="product">
-                  <img src="img/mesita.png" alt="Producto 1">
-                  <div class="info">
-                    <h2>Nombre del Producto 1</h2>
-                    <p>Descripción corta del producto.</p>
-                    <a href="producto1.html">Ordenar</a>
-                  </div>
-                </div>
-              
-                <div class="product">
-                  <img src="img/mesita.png" alt="Producto 2">
-                  <div class="info">
-                    <h2>Nombre del Producto 2</h2>
-                    <p>Descripción corta del producto.</p>
-                    <a href="producto2.html">Ordenar</a>
-                  </div>
-                </div>
+
+
 
   <!-- Agrega más productos según necesites -->
 
