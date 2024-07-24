@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController; // Asegúrate de importar el controlador correcto
+use App\Http\Controllers\MeseroController ;
+
 
 // Ruta para mostrar la página de inicio de sesión
 Route::view('/', 'login')->name('login');
@@ -27,3 +29,5 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 
 // Ruta para manejar el cierre de sesión
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::view('/ordenar', "user.ordenar")->name('comidas');
