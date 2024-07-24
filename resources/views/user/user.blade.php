@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset("css/mesero.css")}}">
 
 </head>
+
 <body>
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
             <a href="#" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -20,32 +21,36 @@
             </div>
     </header>
 
-    <div class="container">
+<div class="container">
+  <!-- aqui van las mesas -->
+
         <div class="product">
-          <img src="img/mesita.png" alt="Producto 1">
-          <div class="info">
-            <h2>Nombre del Producto 1</h2>
-            <p>Descripción corta del producto.</p>
-            <a href="{{route("comidas")}}">Ordenar</a>
-          </div>
+            <div class="container-img">
+              <a href="{{route("comidas")}}"><img src="img/mesitax.png" alt="Producto 1"></a>
+            </div>
+            <div class="mesa-titulo">
+              <h2>Mesa 1</h2>
+            </div>
         </div>
-      
 
-
-
-
-
-  <!-- Agrega más productos según necesites -->
-
+        <div class="product">
+            <div class="container-img">
+              <a href="{{route("comidas")}}"><img src="img/mesita.png" alt="Producto 1"></a>
+            </div>
+            <div class="mesa-titulo">
+              <h2>Mesa 1</h2>
+            </div>
+        </div>
 </div>
 
-</body>
-</html>
-
-
-
 
 
 
 </body>
 </html>
+
+
+
+
+
+
