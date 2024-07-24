@@ -28,7 +28,7 @@
           <div class="info">
             <h2>Nombre del Producto 1</h2>
             <p>Descripción corta del producto.</p>
-            <a href="producto1.html">Ordenar</a>
+            <a href='ordenar.blade.php'>Ordenar</a>
           </div>
         </div>
       

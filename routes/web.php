@@ -27,3 +27,10 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 
 // Ruta para manejar el cierre de sesión
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Ruta de cajero 
+use App\Http\Controllers\CashierController;
+
+Route::get('/cashier', [CashierController::class, 'index'])->name('cashier.index');
+Route::post('/cashier', [CashierController::class, 'store'])->name('cashier.store');
+Route::delete('/cashier/{order}', [CashierController::class, 'destroy'])->name('cashier.destroy');

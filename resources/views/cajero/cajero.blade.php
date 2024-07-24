@@ -8,18 +8,35 @@
     @stack('styles')
 </head>
 <body>
-    <h1>Sistema de Mesas y Cobro</h1>
-    <div class="mesas-container">
-        <!-- Las mesas se generarán dinámicamente con JavaScript -->
+    <div class="container">
+        <h2>Cajero - Sistema de Comida Rápida</h2>
+        
+        <!-- Sección para añadir pedidos -->
+        <div class="add-order">
+            <h3>Añadir Pedido</h3>
+            <form action="{{ route('cashier.store') }}" method="POST">
+                @csrf
+                <input type="text" name="details" placeholder="Detalles del pedido" required>
+                <button type="submit">Añadir Pedido</button>
+            </form>
+        </div>
+        
+        <!-- Sección para ver y cobrar pedidos -->
+        <div class="pending-orders">
+            <h3>Pedidos Pendientes</h3>
+            <ul>
+                @foreach($orders as $order)
+                    <li>
+                        {{ $order->details }}
+                        <form action="{{ route('cashier.destroy', $order) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Cobrar</button>
+                        </form>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
     </div>
-    <div class="detalle-mesa" id="detalle-mesa">
-        <h2>Mesa <span id="numero-mesa"></span></h2>
-        <div id="pedido-actual"></div>
-        <button onclick="agregarItem()">Agregar ítem</button>
-        <button onclick="cobrar()">Cobrar</button>
-    </div>
-    <div id="factura"></div>    
-    <script src="{{ asset('js/app.js') }}"></script>
-    @stack('scripts')
 </body>
 </html>
