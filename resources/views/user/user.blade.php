@@ -23,13 +23,12 @@
 
 <div class="container">
   <!-- aqui van las mesas -->
-
         <div class="product">
             <div class="container-img">
-              <a href="{{route("comidas")}}"><img src="img/mesitax.png" alt="Producto 1"></a>
+              <a href="{{route("comidas")}}"><img src="{{$mesa->imagen}}" alt="Producto 1"></a>
             </div>
             <div class="mesa-titulo">
-              <h2>Mesa 1</h2>
+              <h2>Mesa {{$mesa->numero}}</h2>
             </div>
         </div>
 
@@ -40,7 +39,14 @@
             <div class="mesa-titulo">
               <h2>Mesa 1</h2>
             </div>
-        </div>
+        </div>  
+        <!-- @foreach($mesas as $mesa) -->
+        <li class="mesa-titulo">{{ $mesa->numero }} ({{ $mesa->capacidad }})</li>
+        <img src="{{$mesa->imagen}}" alt="">
+    @endforeach 
+
+
+
 </div>
 
 

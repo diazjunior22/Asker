@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Mesa;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('diazjunior22'),
             // Agrega cualquier otro campo requerido por tu tabla de usuarios
         ]);
+
         User::create([
             'name' => 'asker',
             'email' => 'asker@gmail.com',
@@ -43,6 +46,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123'),
             // Agrega cualquier otro campo requerido por tu tabla de usuarios
         ]);
+
 
 
 

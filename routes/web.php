@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController; // Asegúrate de importar el controlador correcto
 use App\Http\Controllers\MeseroController ;
-
+use App\Http\Controllers\MesaController ;
+use App\Models\Mesa;
 
 // Ruta para mostrar la página de inicio de sesión
 Route::view('/', 'login')->name('login');
@@ -15,8 +16,9 @@ Route::view('/', 'login')->name('login');
 Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('privada');
 
-Route::view('/usuario', 'user.user')->middleware("auth") //middleware seguridad para que entren si o si por login
+Route::get('/mesero', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
+
 Route::view('/cajero', 'cajero.cajero')->middleware("auth") 
 ->name('cajero');
 
@@ -31,3 +33,4 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::view('/ordenar', "user.ordenar")->name('comidas');
+

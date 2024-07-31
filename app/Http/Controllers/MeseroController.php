@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mesa;
 
 class MeseroController extends Controller
 {
-    public function comidas(){
-        return route("comidas");
+    public function inicio(){
+        $mesas = Mesa::all();
+        return view("user.user", compact('mesas'));
     }
 }
