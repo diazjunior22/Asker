@@ -1,6 +1,7 @@
 body {
 
-  background-image: url("/img/fondo1HD.jpeg");
+  background-image: url("/img/fondo1.jpg");
+  
   background-size: cover;
   }
 
@@ -23,14 +24,16 @@ body {
   }
   
   .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    height: 120px;
+    width: 120px;
+    
+   
   }
   
   .logo-container img {
-    max-width: 150px;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   
   h2 {
@@ -94,4 +97,25 @@ body {
   
   a:hover {
     text-decoration: underline;
+  }
+
+
+
+
+  .contenedor-img {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto; /* Agrega esto para centrar horizontalmente */
+  }
+
+
+
+  .contenedor-img img{
+
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }

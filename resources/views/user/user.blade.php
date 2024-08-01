@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
+    <!-- <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
             <a href="#" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
                 Página de usuario @auth {{Auth::user()->name}}  @endauth
             </a>
@@ -19,37 +19,39 @@
                     <button type="button" class="btn btn-outline-primary me-2">Salir</button>
                 </a>
             </div>
-    </header>
+    </header> -->
 
-<div class="container">
-  <!-- aqui van las mesas -->
-        <div class="product">
-            <div class="container-img">
-              <a href="{{route("comidas")}}"><img src="{{$mesa->imagen}}" alt="Producto 1"></a>
-            </div>
-            <div class="mesa-titulo">
-              <h2>Mesa {{$mesa->numero}}</h2>
-            </div>
+    <nav class="menu">
+  <div class="navbar">
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Acerca de</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </div>
+  <div class="usuario">
+    <img src="foto_usuario.jpg" alt="Foto del usuario">
+    <span>Nombre del usuario</span>
+  </div>
+</nav>
+
+
+<main>
+<div class="mesas-container">
+    @foreach($mesas as $mesa)
+        <div class="mesa">
+           <div class="contenedor-img"></div><img src="{{ $mesa->imagen }}" alt="Mesa {{ $mesa->numero }}"></div>
+           <div class="numero-mesa">Mesa {{ $mesa->numero }}</div>
+ 
         </div>
 
-        <div class="product">
-            <div class="container-img">
-              <a href="{{route("comidas")}}"><img src="img/mesita.png" alt="Producto 1"></a>
-            </div>
-            <div class="mesa-titulo">
-              <h2>Mesa 1</h2>
-            </div>
-        </div>  
-        <!-- @foreach($mesas as $mesa) -->
-        <li class="mesa-titulo">{{ $mesa->numero }} ({{ $mesa->capacidad }})</li>
-        <img src="{{$mesa->imagen}}" alt="">
-    @endforeach 
 
-
-
+    @endforeach
 </div>
 
 
+
+</main>
 
 
 </body>

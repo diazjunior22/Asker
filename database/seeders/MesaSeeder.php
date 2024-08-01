@@ -14,32 +14,40 @@ class MesaSeeder extends Seeder
      */
     public function run(): void
     {
+
         Mesa::create([
             'numero' => 1,
-            'capacidad' => 4,
+            'capacidad' => 10,
             'estado' => 'Disponible',
-            'imagen' => 'https://example.com/mesa1.jpg'
+            'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'
         ]);
 
         Mesa::create([
             'numero' => 2,
-            'capacidad' => 6,
-            'estado' => 'Ocupada',
-            'imagen' => 'https://example.com/mesa2.jpg'
+            'capacidad' => 10,
+            'estado' => 'Disponible',
+            'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'
         ]);
 
         Mesa::create([
             'numero' => 3,
-            'capacidad' => 8,
+            'capacidad' => 10,
             'estado' => 'Disponible',
-            'imagen' => 'https://example.com/mesa3.jpg'
+            'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'
         ]);
 
         Mesa::create([
             'numero' => 4,
-            'capacidad' => 2,
-            'estado' => 'Ocupada',
-            'imagen' => 'https://example.com/mesa4.jpg'
+            'capacidad' => 10,
+            'estado' => 'Disponible',
+            'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'
+        ]);
+
+        Mesa::create([
+            'numero' => 5,
+            'capacidad' => 10,
+            'estado' => 'Disponible',
+            'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'
         ]);
 
         Mesa::create([
