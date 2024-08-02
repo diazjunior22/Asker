@@ -18,6 +18,9 @@ Route::view('/privado', 'admin.secret')->middleware("auth") //middleware segurid
 
 Route::get('/mesero', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
+Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->name('mesa.show');
+
+
 
 Route::view('/cajero', 'cajero.cajero')->middleware("auth") 
 ->name('cajero');
@@ -31,6 +34,4 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 
 // Ruta para manejar el cierre de sesión
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::view('/ordenar', "user.ordenar")->name('comidas');
 

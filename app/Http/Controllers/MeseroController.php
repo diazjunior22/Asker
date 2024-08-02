@@ -11,4 +11,18 @@ class MeseroController extends Controller
         $mesas = Mesa::all();
         return view("user.user", compact('mesas'));
     }
+
+    public function productos($id)
+{
+    $mesa = Mesa::findOrFail($id);
+    return view('user.mesas', compact('mesa'));
 }
+
+
+
+
+
+}
+
+
+

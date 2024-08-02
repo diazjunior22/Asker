@@ -32,24 +32,17 @@
             background-color: orange;
             color: white;
             border-radius: 5px;
-            transition: background 1s  ease;
+            transition: background 1s ease;
         }
         .table-card span:hover{
-          background-color: black;
-          color: bisque;
-
+            background-color: black;
+            color: bisque;
         }
-
-      
-        
 
         .color {
-            color: black ;
+            color: black;
         }
-
-
     </style>
-
 </head>
 
 <body class="bg-light">
@@ -60,7 +53,7 @@
                 <h1 class="h4 font-weight-bold m-0">ASKER</h1>
             </div>
             <div class="d-flex align-items-center">
-                <span class="mr-2 color">mesero,@auth {{Auth::user()->name}}  @endauth </span>
+                <span class="mr-2 color">mesero, @auth {{ Auth::user()->name }} @endauth </span>
                 <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
             </div>
         </div>
@@ -72,10 +65,12 @@
         <div class="row">
             @foreach($mesas as $mesa)
                 <div class="col-6 col-md-4 col-lg-4 col-xl-3 mb-4">
-                    <div class="table-card">
-                        <img src="{{ $mesa->imagen }}" alt="Mesa {{ $mesa->numero }}">
-                        <span>MESA {{ $mesa->numero }}</span>
-                    </div>
+                    <a href="{{ route('mesa.show', $mesa->id) }}" class="text-decoration-none">
+                        <div class="table-card">
+                            <img src="{{ $mesa->imagen }}" alt="Mesa {{ $mesa->numero }}">
+                            <span>MESA {{ $mesa->numero }}</span>
+                        </div>
+                    </a>
                 </div>   
             @endforeach
         </div>
