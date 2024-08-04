@@ -9,7 +9,7 @@ use App\Http\Controllers\MesaController ;
 use App\Models\Mesa;
 
 // Ruta para mostrar la página de inicio de sesión
-Route::view('/', 'login')->name('login');
+Route::get('/', [LoginController::class, "principal"])->name('login');
 
 // Ruta para mostrar la página de registro
 // Route::view('/registro', 'registro')->name('registro');

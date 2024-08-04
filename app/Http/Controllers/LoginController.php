@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+
+
     public function register(Request $request)
     {
         // $request->validate([
@@ -80,6 +82,11 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+
+    
+    public function principal(){
+        return view('login');
+    }
 
 
 
