@@ -9,7 +9,7 @@ use App\Http\Controllers\MesaController ;
 use App\Models\Mesa;
 
 // Ruta para mostrar la página de inicio de sesión
-Route::view('/', 'login')->name('login');
+Route::view('/hola', 'login')->name('login');
 
 // Ruta para mostrar la página de registro
 // Route::view('/registro', 'registro')->name('registro');
@@ -20,7 +20,7 @@ Route::view('/privado', 'admin.secret')->middleware("auth") //middleware segurid
 
 Route::get('/mesero', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
-Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->name('mesa.show');
+Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->middleware("auth")->name('mesa.show');
 
 
 
