@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
             $table->string('numero');
-
             $table->integer('capacidad');
             $table->string('estado');
             $table->string('imagen');
@@ -28,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+  
         Schema::dropIfExists('mesas');
+
+
+
     }
 };
