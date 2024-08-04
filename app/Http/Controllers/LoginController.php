@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
+
+
     public function register(Request $request)
     {
         // $request->validate([
@@ -50,9 +52,22 @@ class LoginController extends Controller
         $remember = ($request->has("remember") ? true:false);
         if (Auth::attempt($credentials, $remember)) { 
             $request->session()->regenerate(); //que prepare la session
-            return redirect()->intended(route("privada")); // que lo lleve ala apgina privada
-        }else{
-            return redirect("login");
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                // return redirect()->intended(route('admin.dashboard'));
+                return redirect(route("privada"));
+            } elseif ($user->role == 'user') {
+                // return redirect()->intended(route('user.dashboard'));
+                return redirect(route("user"));
+            }elseif($user->role == "cajero"){
+                return redirect(route('cajero'));  
+            }
+
+            return redirect()->intended(route('login'));
+        } else {
+            return redirect('login')->withErrors([
+                'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+            ]);
         }
 
 
@@ -66,4 +81,18 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+
+    
+    public function principal(){
+        return view('login');
+    }
+
+
+
+
+
+
+
+
 }
