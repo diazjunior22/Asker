@@ -22,7 +22,7 @@
             <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
         </div>
         <div class="text-center">
-            <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover">
+            <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover">
             <h1 class="text-lg font-bold mt-4">{{ $producto->nombre }}</h1>
             <p class="text-left px-8 py-4">{{ $producto->descripcion }}</p>
         </div>
