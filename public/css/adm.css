@@ -24,7 +24,7 @@ li {
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
 	--dark: #342E37;
-	--red: #DB504A;
+	--red: #c5211c;
 	--yellow: #FFCE26;
 	--light-yellow: #FFF2C6;
 	--orange: #FD7238;
@@ -48,7 +48,9 @@ body {
 	overflow-x: hidden;
 }
 
-
+.hidden{
+  display: none;
+}
 
 
 

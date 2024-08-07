@@ -12,6 +12,8 @@ class CategoriasTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::factory()->count(3)->create();
+        Categoria::create([
+            'nombre' => 'perros',
+        ]);
     }
 }

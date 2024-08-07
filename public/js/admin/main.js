@@ -81,79 +81,34 @@ switchMode.addEventListener('change', function () {
 
 
 //CAMBIAR LAS SECCIONES
-document.addEventListener('DOMContentLoaded', function() {
-    // Manejar clics en enlaces del sidebar
-    const sidebarLinks = document.querySelectorAll('#sidebar .side-menu.top li a');
-    sidebarLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Evitar comportamiento predeterminado del enlace
-
-            // Remover la clase 'active' de todos los enlaces del sidebar
-            sidebarLinks.forEach(l => l.parentElement.classList.remove('active'));
-            // Agregar la clase 'active' al enlace clickeado
-            link.parentElement.classList.add('active');
-
-            // Ocultar todos los contenidos principales
-            hideAllContents();
-
-            // Determinar qué contenido mostrar según el enlace clickeado
-            switch (link.textContent.trim()) {
-                case 'Dashboard':
-                    document.getElementById('content-dashboard').style.display = 'block';
-                    break;
-                case 'My Store':
-                    document.getElementById('content-my-store').style.display = 'block';
-                    break;
-                case 'Analytics':
-                    document.getElementById('content-analytics').style.display = 'block';
-                    break;
-                case 'Message':
-                    document.getElementById('content-message').style.display = 'block';
-                    break;
-                case 'Team':
-                    document.getElementById('content-team').style.display = 'block';
-                    break;
-            }
-        });
-    });
-
-    // Manejar clics en enlaces del navbar
-    const navbarLinks = document.querySelectorAll('#content nav a.nav-link');
-    navbarLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault(); // Evitar comportamiento predeterminado del enlace
-
-            // Ocultar todos los contenidos principales
-            hideAllContents();
-
-            // Determinar qué contenido mostrar según el enlace clickeado
-            switch (link.textContent.trim()) {
-                case 'Dashboard':
-                    document.getElementById('content-dashboard').style.display = 'block';
-                    break;
-                case 'My Store':
-                    document.getElementById('content-my-store').style.display = 'block';
-                    break;
-                case 'Analytics':
-                    document.getElementById('content-analytics').style.display = 'block';
-                    break;
-                case 'Message':
-                    document.getElementById('content-message').style.display = 'block';
-                    break;
-                case 'Team':
-                    document.getElementById('content-team').style.display = 'block';
-                    break;
-                case 'Settings':
-                    document.getElementById('content-settings').style.display = 'block';
-                    break;
-            }
-        });
-    });
-
     // Función para ocultar todos los contenidos principales
-    function hideAllContents() {
-        document.querySelectorAll('#content > main > section').forEach(section => {
-            section.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+        // Manejar clics en enlaces del sidebar
+        const sidebarLinks = document.querySelectorAll('#sidebar .side-menu li a');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Evitar comportamiento predeterminado del enlace
+
+                // Remover la clase 'active' de todos los enlaces del sidebar
+                sidebarLinks.forEach(l => l.parentElement.classList.remove('active'));
+                // Agregar la clase 'active' al enlace clickeado
+                link.parentElement.classList.add('active');
+
+                // Ocultar todos los contenidos principales
+                hideAllContents();
+
+                // Determinar qué contenido mostrar según el enlace clickeado
+                const target = link.getAttribute('data-target');
+                document.getElementById(target).classList.remove('hidden');
+            });
         });
-    }
-});
+
+        function hideAllContents() {
+            const contents = document.querySelectorAll('main section');
+            contents.forEach(content => content.classList.add('hidden'));
+        }
+
+        // Inicialmente ocultar todos los contenidos excepto el dashboard
+        hideAllContents();
+        document.getElementById('content-dashboard').classList.remove('hidden');
+    });

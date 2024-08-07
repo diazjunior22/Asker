@@ -20,7 +20,7 @@ Route::view('/privado', 'admin.secret')->middleware("auth") //middleware segurid
 
 Route::get('/mesero', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
-Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->name('mesa.show');
+Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->name('mesa.show')->middleware("auth");
 
 
 
@@ -44,4 +44,4 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // routes/web.php
 
-Route::get('/producto/{mesaId}/{productoId}', [MeseroController::class, 'show'])->name('producto.show');
+Route::get('/producto/{mesaId}/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");

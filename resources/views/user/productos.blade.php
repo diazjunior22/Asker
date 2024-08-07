@@ -111,6 +111,8 @@
             <button type="button" class="btn btn-orange text-white">Perros</button>
             <button type="button" class="btn btn-orange text-white">Hamburguesas</button>
             <button type="button" class="btn btn-orange text-white">Carnes</button>
+            <button type="button" class="btn btn-orange text-white">Bebidas</button>
+
         </div>
 
         <div class="row">
@@ -118,12 +120,10 @@
     <div class="col-md-4 mb-4">
         <a href="{{ route('producto.show', [$mesa->id, $producto->id]) }}" class="text-decoration-none text-dark">
             <div class="card">
-                <img src="{{ $producto->imagen }}" alt="Imagen del producto" class="card-img-top">
+                <img src="{{ asset($producto->imagen) }}" alt="Imagen del producto" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{{ $producto->nombre }}</h5>
-                    <p class="card-text">{{ $producto->descripcion }}</p>
                     <p class="card-text">Precio: {{ $producto->precio }}</p>
-                    <p class="card-text">Cantidad: {{ $producto->cantidad }}</p>
                 </div>
             </div>
         </a>
