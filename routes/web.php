@@ -18,9 +18,10 @@ Route::get('/', [LoginController::class, "principal"])->name('login');
 Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('privada');
 
-Route::get('/mesero', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
+Route::get('asker/meseroMesas', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
-Route::get('/mesa/{id}', [MeseroController::class, 'productos'])->name('mesa.show')->middleware("auth");
+
+Route::get('/mesa/Mesa:{id}/Productos', [MeseroController::class, 'productos'])->name('mesa.show')->middleware("auth");
 
 
 
@@ -38,10 +39,8 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-//ruta para filtrar los productos
-Route::get('/productos/{categoria}', [MeseroController::class, 'productosPorCategoria'])->name("productoCategory");
 // routes/web.php
 
 // routes/web.php
 
-Route::get('/producto/{mesaId}/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");
+Route::get('/Mesa/{mesaId}/Producto:/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");

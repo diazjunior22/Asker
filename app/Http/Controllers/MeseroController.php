@@ -20,16 +20,21 @@ class MeseroController extends Controller
 
 
     //aqui estamos mostrandos todos los producto de la base de datos
-    public function productos($id)
-
-{
-    $mesa = Mesa::findOrFail($id);
-    $productos = Producto::all();
-
-    return view('user.productos', compact('mesa',"productos"));
-}
-
-
+    public function productos($id, $categoria = null)
+    {
+        $mesa = Mesa::find($id);
+        $categorias = Categoria::all(); // Obtener todas las categorías
+        if ($categoria == 'all') {
+            $productos = Producto::all();
+        } elseif ($categoria) {
+            $productos = Producto::join('categorias', 'productos.id_categoria', '=', 'categorias.id')
+                ->where('categorias.nombre', $categoria)
+                ->get();
+        } else {
+            $productos = Producto::all();
+        }
+        return view('user.productos', compact('productos', 'mesa', 'categorias'));
+    }
 
 //aqui mostramos producto por producto mas detallado
 public function show($mesaId, $productoId)
@@ -53,10 +58,4 @@ public function show($mesaId, $productoId)
 
 
 
-
 }
-
-
-
-
-

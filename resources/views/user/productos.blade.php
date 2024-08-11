@@ -130,13 +130,13 @@
                 <button class="btn btn-light ml-2" type="button">&#x1F6D2;</button>
             </div>
         </div>
+
         <div class="btn-group mb-4" role="group">
-            <button type="button" class="btn btn-orange text-white category-btn active" data-category="all">All</button>
-            <button type="button" class="btn btn-orange text-white category-btn" data-category="perros">Perros</button>
-            <button type="button" class="btn btn-orange text-white category-btn" data-category="hamburguesas">Hamburguesas</button>
-            <button type="button" class="btn btn-orange text-white category-btn" data-category="carnes">Carnes</button>
-            <button type="button" class="btn btn-orange text-white category-btn" data-category="bebidas">Bebidas</button>
-        </div>
+    <button type="button" class="btn btn-orange text-white category-btn active" data-category="all">All</button>
+    @foreach ($categorias as $categoria)
+        <button type="button" class="btn btn-orange text-white category-btn" data-category="{{ $categoria->nombre }}">{{ $categoria->nombre }}</button>
+    @endforeach
+</div>
 
 
         <div class="row">
@@ -167,6 +167,47 @@
 
         // Agregar la clase 'active' al botón clicado
         this.classList.add('active');
+
+
+
+
+
+
+
+
+
+
+
+        $(document).ready(function() {
+            $('.category-btn').on('click', function() {
+                var category = $(this).data('category');
+
+                // Añadir la clase 'active' al botón seleccionado y quitarla de los demás
+                $('.category-btn').removeClass('active');
+                $(this).addClass('active');
+
+                // Filtrar los productos
+                if (category === 'all') {
+                    $('.producto-item').show();
+                } else {
+                    $('.producto-item').each(function() {
+                        var itemCategory = $(this).data('category');
+                        if (itemCategory === category) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                }
+            });
+        });
+
+
+
+
+
+
+
     });
 });
 </script>
