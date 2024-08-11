@@ -73,6 +73,30 @@
             background-color: darkorange;
             border-color: darkorange;
         }
+
+
+.btn-dark {
+    background-color: black;
+    border-color: black;
+}
+
+.btn-dark.active {
+    background-color: black;
+    border-color: black;
+}
+
+.category-btn {
+    margin-right: 5px;
+}
+
+.category-btn.active {
+    background-color: black;
+    border-color: black;
+    color: white;
+}
+
+
+
     </style>
 </head>
 <body class="bg-light">
@@ -107,13 +131,13 @@
             </div>
         </div>
         <div class="btn-group mb-4" role="group">
-            <button type="button" class="btn btn-dark text-white">All</button>
-            <button type="button" class="btn btn-orange text-white">Perros</button>
-            <button type="button" class="btn btn-orange text-white">Hamburguesas</button>
-            <button type="button" class="btn btn-orange text-white">Carnes</button>
-            <button type="button" class="btn btn-orange text-white">Bebidas</button>
-
+            <button type="button" class="btn btn-orange text-white category-btn active" data-category="all">All</button>
+            <button type="button" class="btn btn-orange text-white category-btn" data-category="perros">Perros</button>
+            <button type="button" class="btn btn-orange text-white category-btn" data-category="hamburguesas">Hamburguesas</button>
+            <button type="button" class="btn btn-orange text-white category-btn" data-category="carnes">Carnes</button>
+            <button type="button" class="btn btn-orange text-white category-btn" data-category="bebidas">Bebidas</button>
         </div>
+
 
         <div class="row">
         @foreach ($productos as $producto)
@@ -130,13 +154,22 @@
     </div>
 @endforeach
 
-
-
-    
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.querySelectorAll('.category-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        // Remover la clase 'active' de todos los botones
+        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+
+        // Agregar la clase 'active' al botón clicado
+        this.classList.add('active');
+    });
+});
+</script>
+
 </body>
 </html>

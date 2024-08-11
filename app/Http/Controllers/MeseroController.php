@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mesa;
 use App\Models\Producto;
+use App\Models\Categoria;
+
 
 class MeseroController extends Controller
 {
+    //aqui estamos retornarnos todas las mesas
     public function inicio(){
         $mesas = Mesa::all();
         return view("user.user", compact('mesas'));
     }
 
+
+
+
+    //aqui estamos mostrandos todos los producto de la base de datos
     public function productos($id)
+
 {
     $mesa = Mesa::findOrFail($id);
     $productos = Producto::all();
@@ -23,20 +31,17 @@ class MeseroController extends Controller
 
 
 
-
+//aqui mostramos producto por producto mas detallado
 public function show($mesaId, $productoId)
 {
     // Obtener el producto por su ID
     $producto = Producto::find($productoId);
-
     // Obtener la mesa por su ID (opcional)
     $mesa = Mesa::find($mesaId);
-
     // Verificar si el producto existe
     if (!$producto) {
         abort(404);
     }
-
     // Pasar el producto y la mesa a la vista
     return view('user.product', [
         'producto' => $producto,
@@ -46,6 +51,12 @@ public function show($mesaId, $productoId)
 }
 
 
+
+
+
 }
+
+
+
 
 

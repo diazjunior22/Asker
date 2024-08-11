@@ -38,8 +38,8 @@ Route::post('/inicia-sesion', [LoginController::class, 'login'])->name('inicia-s
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-
-
+//ruta para filtrar los productos
+Route::get('/productos/{categoria}', [MeseroController::class, 'productosPorCategoria'])->name("productoCategory");
 // routes/web.php
 
 // routes/web.php

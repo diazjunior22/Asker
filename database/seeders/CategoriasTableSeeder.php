@@ -15,5 +15,21 @@ class CategoriasTableSeeder extends Seeder
         Categoria::create([
             'nombre' => 'perros',
         ]);
+
+        Categoria::create([
+            'nombre' => 'hamburguesas',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'pizza',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'carnes',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'bebidas',
+        ]);
     }
 }
