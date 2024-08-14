@@ -102,7 +102,7 @@
 <body class="bg-light">
     <header class="header bg-white shadow-sm">
         <div class="d-flex align-items-center">
-        <a class="btn btn-link text-dark" href="{{ route("user")}}">
+        <a class="btn btn-link text-dark" href="{{ route('user')}}">
     &#x21A9;
 </a>
 

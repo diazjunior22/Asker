@@ -7,6 +7,11 @@ use App\Http\Controllers\MeseroController ;
 use App\Http\Controllers\MesaController ;
 
 use App\Models\Mesa;
+//ruta para ver mi usuario
+Route::view('/asker/meseroMesas/miperfil',"user.user_info")->name("miperfil");
+
+
+
 
 // Ruta para mostrar la página de inicio de sesión
 Route::get('/', [LoginController::class, "principal"])->name('login');

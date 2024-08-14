@@ -72,7 +72,8 @@
             </div>
             <div class="d-flex align-items-center">
                 <span class="mr-2">mesero, @auth {{ Auth::user()->name }} @endauth </span>
-                <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                <a href="{{route('miperfil')}}"><img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                </a>
             </div>
         </div>
         <div id="nav-menu" class="nav-menu">
