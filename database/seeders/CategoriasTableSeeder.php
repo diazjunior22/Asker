@@ -25,11 +25,10 @@ class CategoriasTableSeeder extends Seeder
         ]);
 
         Categoria::create([
-            'nombre' => 'carnes',
-        ]);
-
-        Categoria::create([
             'nombre' => 'bebidas',
+        ]);
+        Categoria::create([
+            'nombre' => 'Asados',
         ]);
     }
 }
