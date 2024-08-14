@@ -132,14 +132,13 @@
         </div>
 
         <div class="btn-group mb-4" role="group">
-    <button type="button" class="btn btn-orange text-white category-btn active" data-category="all">All</button>
+    <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => 'all']) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === 'all' ? 'active' : '' }}">All</a>
     @foreach ($categorias as $categoria)
-        <button type="button" class="btn btn-orange text-white category-btn" data-category="{{ $categoria->nombre }}">{{ $categoria->nombre }}</button>
+        <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => $categoria->nombre]) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === $categoria->nombre ? 'active' : '' }}">{{ $categoria->nombre }}</a>
     @endforeach
 </div>
 
-
-        <div class="row">
+<div class="row">
         @foreach ($productos as $producto)
     <div class="col-md-4 mb-4">
         <a href="{{ route('producto.show', [$mesa->id, $producto->id]) }}" class="text-decoration-none text-dark">
