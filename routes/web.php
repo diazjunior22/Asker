@@ -44,3 +44,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // routes/web.php
 
 Route::get('/Mesa/{mesaId}/Producto:/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");
+
+
+Route::post('/carrito/agregar', 'CarritoController@agregarProducto')->name('carrito.agregar');
+Route::get('/carrito', 'CarritoController@index')->name('carrito.index');

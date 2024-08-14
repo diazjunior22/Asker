@@ -24,23 +24,26 @@
             </div>
             <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}" class="card-img-top" style="object-fit: cover; height: 12rem;">
             <div class="card-body text-center">
-                <h5 class="card-title fw-bold">{{ $producto->nombre }}</h5>
-                <p class="card-text text-start">{{ $producto->descripcion }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="input-group">
-                        <button class="btn btn-warning text-white">-</button>
-                        <input type="text" class="form-control text-center" value="1" style="max-width: 50px;">
-                        <button class="btn btn-warning text-white">+</button>
-                    </div>
-                    <div class="text-lg fw-bold text-warning">Total ${{ $producto->precio }}</div>
-                </div>
-                <div class="d-flex justify-content-around mt-4">
-                    <button class="btn btn-warning text-white">DESCRIPCIÓN</button>
-                    <button class="btn btn-warning text-white">Agregar</button>
-                </div>
-            </div>
+    <h5 class="card-title fw-bold">{{ $producto->nombre }}</h5>
+    <p class="card-text text-start">{{ $producto->descripcion }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="input-group">
+            <button class="btn btn-warning text-white">-</button>
+            <input type="text" class="form-control text-center" value="1" style="max-width: 50px;" name="cantidad">
+            <button class="btn btn-warning text-white">+</button>
         </div>
+        <div class="text-lg fw-bold text-warning">Total ${{ $producto->precio }}</div>
     </div>
+    <div class="d-flex justify-content-around mt-4">
+        <form action="{{ route('carrito.agregar') }}" method="POST">
+            @csrf
+            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+            <input type="hidden" name="precio" value="{{ $producto->precio }}">
+            <textarea name="descripcion" class="form-control" placeholder="Descripción"></textarea>
+            <button class="btn btn-warning text-white">Agregar</button>
+        </form>
+    </div>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
