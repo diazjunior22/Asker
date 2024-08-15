@@ -127,7 +127,8 @@
                 <div class="input-group-append">
                     <button class="btn btn-orange text-white" type="button">&#x1F50D;</button>
                 </div>
-                <button class="btn btn-light ml-2" type="button">&#x1F6D2;</button>
+                <a href="{{route("carrito.mostrar", ['mesa_id' => $mesa->id])}}"><button class="btn btn-light ml-2" type="button">&#x1F6D2;</button>
+                </a>
             </div>
         </div>
 

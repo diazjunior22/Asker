@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController; // Asegúrate de importar el controlador correcto
 use App\Http\Controllers\MeseroController ;
 use App\Http\Controllers\MesaController ;
+use App\Http\Controllers\CarritoController ;
 
 use App\Models\Mesa;
 
@@ -48,5 +49,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/Mesa/{mesaId}/Producto:/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");
 
 
-Route::post('/carrito/agregar', 'CarritoController@agregarProducto')->name('carrito.agregar');
-Route::get('/carrito', 'CarritoController@index')->name('carrito.index');
+
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::get('/carrito/{mesa_id}', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
+Route::post('/carrito/checkout', [CarritoController::class, 'checkout'])->name('carrito.checkout');

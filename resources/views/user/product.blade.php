@@ -27,19 +27,21 @@
     <h5 class="card-title fw-bold">{{ $producto->nombre }}</h5>
     <p class="card-text text-start">{{ $producto->descripcion }}</p>
     <div class="d-flex justify-content-between align-items-center">
-        <div class="input-group">
+        <!-- <div class="input-group">
             <button class="btn btn-warning text-white">-</button>
             <input type="text" class="form-control text-center" value="1" style="max-width: 50px;" name="cantidad">
             <button class="btn btn-warning text-white">+</button>
-        </div>
+        </div> -->
         <div class="text-lg fw-bold text-warning">Total ${{ $producto->precio }}</div>
     </div>
     <div class="d-flex justify-content-around mt-4">
-        <form action="{{ route('carrito.agregar') }}" method="POST">
+        <form action="{{ route('carrito.agregar')}}" method="POST">
             @csrf
             <input type="hidden" name="producto_id" value="{{ $producto->id }}">
             <input type="hidden" name="precio" value="{{ $producto->precio }}">
-            <textarea name="descripcion" class="form-control" placeholder="Descripción"></textarea>
+            <input type="hidden" name="mesa_id" value="{{ $mesa->id }}"> <!-- Campo oculto para mesa_id -->
+            <input type="number" name="cantidad" class="form-control text-center" value="1" style="max-width: 50px;" min="1">
+            <textarea name="nota" class="form-control" placeholder="nota"></textarea>
             <button class="btn btn-warning text-white">Agregar</button>
         </form>
     </div>
