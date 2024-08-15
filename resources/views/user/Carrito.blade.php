@@ -12,6 +12,7 @@
                     <th>Precio</th>
                     <th>Subtotal</th>
                     <th>Nota</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +23,19 @@
                         <td>{{ number_format($item->precio, 2) }}</td>
                         <td>{{ number_format($item->precio * $item->cantidad, 2) }}</td>
                         <td>{{ $item->nota }}</td>
+                        <td>
+                            <!-- Botón para editar -->
+                             <!-- Botón para editar -->
+                            <a href="{{ route('carrito.editar.form', $item->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                            <!-- Formulario para eliminar -->
+                            <form action="{{ route('carrito.eliminar', $item->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
+
                 @endforeach
             </tbody>
         </table>
@@ -36,4 +49,11 @@
             </form>
         </div>
     </div>
+
+    <!-- Scripts para el funcionamiento de los modales -->
+    @push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    @endpush
 @endsection

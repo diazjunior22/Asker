@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pedido extends Model
 {
     use HasFactory;
+// En el modelo Pedido.php
+protected $dates = ['fecha']; // O usa $casts si prefieres
 
     protected $fillable = [
         'fecha',
@@ -23,10 +25,7 @@ class Pedido extends Model
         return $this->belongsTo(Mesa::class);
     }
 
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class);
-    }
+
 
     public function usuario()
     {
@@ -36,5 +35,11 @@ class Pedido extends Model
     public function productos()
     {
         return $this->belongsToMany(Producto::class);
+    }
+
+
+    public function detalles()
+    {
+        return $this->hasMany(DetallePedido::class, 'id_pedido');
     }
 }

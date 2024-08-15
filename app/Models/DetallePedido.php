@@ -14,12 +14,12 @@ class DetallePedido extends Model
         'id_pedido',
         'id_producto',
         'cantidad',
-        'nota'
+        'nota',
     ];
 
     public function pedido()
     {
-        return $this->belongsTo(Pedido::class);
+        return $this->belongsTo(Pedido::class, 'id_pedido');
     }
 
     public function producto()
