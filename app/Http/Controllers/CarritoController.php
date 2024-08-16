@@ -10,79 +10,8 @@ use App\Models\carrito;
 
 class CarritoController extends Controller
 
-{
-    // public function agregarProducto(Request $request)
-    // {
-
-    //     $validatedData = $request->validate([
-    //         'producto_id' => 'required|exists:productos,id',
-    //         'precio' => 'required|numeric',
-    //         'nota' => 'nullable|string|max:255', // Nota o descripción opcional
-    //     ]);
-
-    //         // Aquí puedes encontrar el carrito del cliente o crear uno nuevo
-    // $cart = session()->get('carritos', []);
-
-    // $cart[] = [
-    //     'producto_id' => $validatedData['producto_id'],
-    //     'cantidad' => 1, // O el valor que quieras manejar por defecto
-    //     'precio' => $validatedData['precio'],
-    //     'nota' => $validatedData['nota'], // Guardar la nota del cliente
-    // ];
-
-
-    // session()->put('carritos', $cart);
-
-    // return redirect()->back()->with('success', 'Producto agregado al carrito con éxito');
-    // }
-
-    // public function actualizarCarrito(Request $request)
-    // {
-    //     // Actualiza la cantidad o nota de un producto en el carrito
-    //     $carrito = session()->get('carrito');
-    //     $productoId = $request->input('producto_id');
-    //     $cantidad = $request->input('cantidad');
-    //     $nota = $request->input('nota');
-
-    //     // Busca el DetallePedido correspondiente
-    //     $detallePedido = DetallePedido::where('id_pedido', $carrito['id_pedido'])
-    //         ->where('id_producto', $productoId)
-    //         ->first();
-
-    //     // Actualiza la cantidad o nota
-    //     $detallePedido->cantidad = $cantidad;
-    //     $detallePedido->nota = $nota;
-    //     $detallePedido->save();
-
-    //     return redirect()->back()->with('success', 'Carrito actualizado');
-    // }
-
-    // public function eliminarDelCarrito(Request $request)
-    // {
-    //     // Elimina un producto del carrito
-    //     $carrito = session()->get('carrito');
-    //     $productoId = $request->input('producto_id');
-
-    //     // Busca el DetallePedido correspondiente
-    //     $detallePedido = DetallePedido::where('id_pedido', $carrito['id_pedido'])
-    //         ->where('id_producto', $productoId)
-    //         ->first();
-
-    //     // Elimina el DetallePedido
-    //     $detallePedido->delete();
-
-    //     return redirect()->back()->with('success', 'Producto eliminado del carrito');
-    // }
-
-    // public function verCarrito()
-    // {
-    //     // Muestra el carrito
-    //     $carrito = session()->get('carrito');
-    //     $detalles = DetallePedido::where('id_pedido', $carrito['id_pedido'])->get();
-
-    //     return view('carrito', compact('detalles'));
-    // }
-
+{ 
+   
 
     public function agregar(Request $request)
     {
@@ -95,7 +24,7 @@ class CarritoController extends Controller
             'mesa_id' => 'required|integer|exists:mesas,id',
         ]);
     
-        // Agregar el producto al carrito
+        // Agregar el producto al carrito 
         $carrito = Carrito::create([
             'producto_id' => $request->producto_id,
             'mesa_id' => $request->mesa_id,
@@ -105,20 +34,12 @@ class CarritoController extends Controller
             'usuario_id' => auth()->user()->id, // Establece el usuario propietario del carrito
         ]);
     
-        // Agregar la información del producto a la tabla detalle_pedidos
-        // DetallePedido::create([
-        //     'id_pedido' => $carrito->id, // El ID del carrito es el ID del pedido
-        //     'id_producto' => $request->producto_id,
-        //     'cantidad' => $request->cantidad,
-        //     'nota' => $request->nota,
-        // ]);
-    
         return redirect()->back()->with('success', 'Producto agregado al carrito con éxito');
     }
 
 
 
-
+    //mostrar todos los productos del carrito
     public function mostrarCarrito(Request $request, $mesa_id)
     {
         $items = Carrito::with('producto')
@@ -128,6 +49,9 @@ class CarritoController extends Controller
     
         return view('user.carrito', compact('items', 'mesa_id'));
     }
+
+
+
 
     public function checkout(Request $request)
     {
@@ -156,14 +80,15 @@ class CarritoController extends Controller
         $total = 0;
         foreach ($items as $item) {
             $detalle = $pedido->detalles()->create([
-                'id_producto' => $item->producto_id,
+                'id_producto' => $item->producto_id, // Asegúrate de que este campo tiene un valor válido
                 'cantidad' => $item->cantidad,
                 'nota' => $item->nota,
             ]);
-    
+        
             // Sumar al total (suponiendo que el precio se obtiene del producto relacionado)
             $total += $item->producto->precio * $item->cantidad;
         }
+        
     
         // Actualizar el total del pedido
         $pedido->total = $total;
@@ -174,7 +99,7 @@ class CarritoController extends Controller
                     ->where('usuario_id', auth()->user()->id)
                     ->delete();
     
-        return redirect()->route('pedidos.mostrar', $pedido->id)->with('success', 'Pedido realizado con éxito');
+        return redirect()->route('mesa.show', $pedido->id)->with('success', 'Pedido realizado con éxito');
     }
     
 
@@ -183,10 +108,59 @@ class CarritoController extends Controller
 
 
 
+    public function editar(Request $request, $id)
+    {
+        $request->validate([
+            'precio' => 'required|numeric',
+            'cantidad' => 'required|integer|min:1',
+            'nota' => 'nullable|string',
+        ]);
+    
+        $carrito = Carrito::where('id', $id)
+                          ->where('usuario_id', auth()->user()->id)
+                          ->firstOrFail();
+    
+        $carrito->update([
+            'precio' => $request->precio,
+            'cantidad' => $request->cantidad,
+            'nota' => $request->nota,
+        ]);
+    
+        return redirect()->route('carrito.mostrar', $carrito->mesa_id)
+                         ->with('success', 'Producto actualizado en el carrito con éxito');
+    }
+    
+
+    
+
+
+
+public function eliminar($id)
+{
+    $carrito = Carrito::where('id', $id)
+                      ->where('usuario_id', auth()->user()->id)
+                      ->first();
+
+    if ($carrito) {
+        $carrito->delete();
+        return redirect()->back()->with('success', 'Producto eliminado del carrito con éxito');
+    }
+
+    return redirect()->back()->with('error', 'Producto no encontrado en el carrito');
+}
 
 
 
 
+public function mostrarEdicion($id)
+{
+    $item = Carrito::with('producto')
+                   ->where('id', $id)
+                   ->where('usuario_id', auth()->user()->id)
+                   ->firstOrFail();
+
+    return view('user.editar_carrito', compact('item'));
+}
 
 
 

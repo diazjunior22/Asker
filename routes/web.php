@@ -6,6 +6,8 @@ use App\Http\Controllers\LoginController; // Asegúrate de importar el controlad
 use App\Http\Controllers\MeseroController ;
 use App\Http\Controllers\MesaController ;
 use App\Http\Controllers\CarritoController ;
+use App\Http\Controllers\PedidosController;
+
 
 use App\Models\Mesa;
 //ruta para ver mi usuario
@@ -58,3 +60,13 @@ Route::get('/Mesa/{mesaId}/Producto:/{productoId}', [MeseroController::class, 's
 Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
 Route::get('/carrito/{mesa_id}', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
 Route::post('/carrito/checkout', [CarritoController::class, 'checkout'])->name('carrito.checkout');
+// Ruta para eliminar productos del carrito
+Route::delete('/carrito/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+// Ruta para editar productos del carrito
+Route::put('/carrito/{id}', [CarritoController::class, 'editar'])->name('carrito.editar');
+Route::get('/carrito/{id}/editar', [CarritoController::class, 'mostrarEdicion'])->name('carrito.editar.form');
+
+
+// Ruta para mostrar los pedidos al chef
+Route::get('/pedidos/chef', [PedidosController::class, 'mostrarPedidosChef'])->name('pedidos.mostrar.chef')->middleware('auth');
+

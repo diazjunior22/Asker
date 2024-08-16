@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalle_del_pedido', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
-            $table->foreignId('producto_id')->constrained()->onDelete('cascade');
-            $table->integer('cantidad');
-            $table->decimal('precio', 10, 2);
-            $table->text('nota')->nullable(); // Aquí almacenarás la nota del cliente
-            $table->timestamps();
+            Schema::create('detalle_pedidos', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('id_pedido')->constrained('pedidos')->onDelete('cascade');
+                $table->foreignId('id_producto')->constrained('productos')->onDelete('cascade');
+                $table->integer('cantidad');
+                $table->text('nota')->nullable();
+                $table->timestamps();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carritos');
+        Schema::dropIfExists('detalle_pedidos');
     }
 };
