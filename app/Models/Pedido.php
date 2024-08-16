@@ -14,7 +14,7 @@ class Pedido extends Model
         'estado',
         'total',
         'id_mesa',
-        'id_cliente',
+        // 'id_cliente',
         'id_usuario',
     ];
 

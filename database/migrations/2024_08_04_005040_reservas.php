@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->time('hora');
-            $table->integer('num_personas');
             $table->foreignId('id_cliente')->constrained('clientes');
             $table->foreignId('id_mesa')->constrained('mesas');
             $table->timestamps();

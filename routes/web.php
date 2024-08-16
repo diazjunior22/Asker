@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController; // Asegúrate de importar el controlador correcto
 use App\Http\Controllers\MeseroController ;
 use App\Http\Controllers\MesaController ;
+use App\Http\Controllers\CarritoController ;
 
 use App\Models\Mesa;
 //ruta para ver mi usuario
@@ -26,7 +27,9 @@ Route::view('/privado', 'admin.secret')->middleware("auth") //middleware segurid
 Route::get('asker/meseroMesas', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');
 
-Route::get('/mesa/Mesa:{id}/Productos', [MeseroController::class, 'productos'])->name('mesa.show')->middleware("auth");
+
+//ruta para mostrar las comidas
+Route::get('/mesa/Mesa:{id}/Productos/{categoria?}', [MeseroController::class, 'productos'])->name('mesa.show')->middleware("auth");
 
 
 
@@ -47,9 +50,11 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // routes/web.php
 
 // routes/web.php
-
+//ruta para mostrar un solo producto{}
 Route::get('/Mesa/{mesaId}/Producto:/{productoId}', [MeseroController::class, 'show'])->name('producto.show')->middleware("auth");
 
 
-Route::post('/carrito/agregar', 'CarritoController@agregarProducto')->name('carrito.agregar');
-Route::get('/carrito', 'CarritoController@index')->name('carrito.index');
+
+Route::post('/carrito/agregar', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+Route::get('/carrito/{mesa_id}', [CarritoController::class, 'mostrarCarrito'])->name('carrito.mostrar');
+Route::post('/carrito/checkout', [CarritoController::class, 'checkout'])->name('carrito.checkout');

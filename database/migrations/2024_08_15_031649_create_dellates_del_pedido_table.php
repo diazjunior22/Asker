@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalle_pedidos', function (Blueprint $table) {
+        Schema::create('detalle_del_pedido', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pedido')->constrained('pedidos');
-            $table->foreignId('id_producto')->constrained('productos');
+            $table->foreignId('pedido_id')->constrained()->onDelete('cascade');
+            $table->foreignId('producto_id')->constrained()->onDelete('cascade');
             $table->integer('cantidad');
-            $table->text('nota');
+            $table->decimal('precio', 10, 2);
+            $table->text('nota')->nullable(); // Aquí almacenarás la nota del cliente
             $table->timestamps();
- 
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalle_pedidos');
+        Schema::dropIfExists('carritos');
     }
 };

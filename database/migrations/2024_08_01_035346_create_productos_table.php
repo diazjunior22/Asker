@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('imagen');
             $table->string('descripcion');
             $table->decimal('precio');
-            $table->integer('cantidad');
-            $table->string('nota_cliente')->nullable(); // Nueva columna para la nota del cliente
             $table->foreignId('id_categoria')->constrained('categorias');
             $table->timestamps();
 

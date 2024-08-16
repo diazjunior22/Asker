@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetallePedido extends Model
 {
     use HasFactory;
+    protected $table = 'detalle_pedidos'; // Asegúrate de que este nombre sea correcto
 
     protected $fillable = [
         'id_pedido',
