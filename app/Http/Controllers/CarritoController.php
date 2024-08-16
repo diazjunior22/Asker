@@ -7,6 +7,8 @@ use App\Models\DetallePedido;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\carrito;
+use App\Models\Mesa;
+
 
 class CarritoController extends Controller
 
@@ -41,13 +43,16 @@ class CarritoController extends Controller
 
     //mostrar todos los productos del carrito
     public function mostrarCarrito(Request $request, $mesa_id)
-    {
+
+    {    #aqui es para regresae cuando estes en carrito
+        $mesaId = Mesa::find($mesa_id);
+
         $items = Carrito::with('producto')
                     ->where('mesa_id', $mesa_id)
                     ->where('usuario_id', auth()->user()->id)
                     ->get();
     
-        return view('user.carrito', compact('items', 'mesa_id'));
+        return view('user.carrito', compact('items', 'mesa_id',"mesaId"));
     }
 
 
