@@ -1,32 +1,32 @@
-@extends('layouts.app')
+<!-- resources/views/chef/pedido.blade.php -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalles del Pedido</title>
+</head>
+<body>
+    <h1>Detalles del Pedido #{{ $pedido->id }}</h1>
+    <p><strong>Fecha:</strong> {{ $pedido->fecha }}</p>
+    <p><strong>Total:</strong> {{ $pedido->total }}</p>
 
-@section('content')
-    <div class="container">
-        <h1>Pedidos Pendientes</h1>
-
-        @if($pedidos->isEmpty())
-            <p>No hay pedidos pendientes.</p>
-        @else
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID del Pedido</th>
-                        <th>Mesa</th>
-                        <th>Fecha</th>
-                        <th>Total</th>
-                        <th>Detalles</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($pedidos as $pedido)
-                        <tr>
-                            <td>{{ $pedido->id }}</td>
-                            <td>{{ $pedido->id_mesa }}</td>
-                            <td>{{ number_format($pedido->total, 2) }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
-    </div>
-@endsection
+    <h2>Productos:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($pedido->detalles as $detalle)
+                <tr>
+                    <td>{{ $detalle->producto->nombre }}</td>
+                    <td>{{ $detalle->cantidad }}</td>
+                    <td>{{ $detalle->nota }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>

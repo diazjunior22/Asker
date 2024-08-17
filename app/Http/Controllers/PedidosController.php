@@ -8,14 +8,12 @@ use App\Models\Pedido;
 
 class PedidosController extends Controller
 {
-    public function mostrarPedidosChef()
-{
-    // Obtener todos los pedidos que están en estado 'pending'
-      // Obtener todos los pedidos con el estado 'pending'
-      $pedidos = Pedido::where('estado', 'pending')
-      ->get();
+  public function mostrarPedido($id)
+  {
+    $pedido = Pedido::with('detalles.producto')->findOrFail($id);
 
-    return view('chef.pedidos', compact('pedidos'));
-}
+    return view('chef.pedido', compact('pedido'));
+  }
+  
 
 }
