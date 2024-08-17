@@ -63,5 +63,4 @@ Route::get('/carrito/{id}/editar', [CarritoController::class, 'mostrarEdicion'])
 
 
 // Ruta para mostrar los pedidos al chef
-Route::get('/pedidos/chef', [PedidosController::class, 'mostrarPedidosChef'])->name('pedidos.mostrar.chef')->middleware('auth');
 
