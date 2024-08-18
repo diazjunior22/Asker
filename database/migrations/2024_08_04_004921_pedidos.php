@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->string('estado');
+            $table->string('estado')->default("pending");
             $table->integer('total');
             $table->foreignId('id_mesa')->constrained('mesas');
-            $table->foreignId('id_cliente')->constrained('clientes');
+            // $table->foreignId('id_cliente')->constrained('clientes');
             $table->foreignId('id_usuario')->constrained('users');
             $table->timestamps();
  

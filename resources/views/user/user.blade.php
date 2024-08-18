@@ -16,6 +16,24 @@
             width: 40px;
             height: 40px;
         }
+        .nav-menu {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: none; /* Ocultar por defecto */
+        }
+        .nav-menu.show {
+            display: block; /* Mostrar cuando se active */
+        }
+
+
+
+
+
         .table-card {
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -46,16 +64,20 @@
 </head>
 
 <body class="bg-light">
-    <header class="bg-white shadow-sm p-3 mb-4">
+<header class="bg-white shadow-sm p-3 mb-4">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <button class="btn btn-link text-dark p-0 mr-3">&#9776;</button>
+                <button id="menu-toggle" class="btn btn-link text-dark p-0 mr-3">&#9776;</button>
                 <h1 class="h4 font-weight-bold m-0">ASKER</h1>
             </div>
             <div class="d-flex align-items-center">
-                <span class="mr-2 color">mesero, @auth {{ Auth::user()->name }} @endauth </span>
-                <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                <span class="mr-2">mesero, @auth {{ Auth::user()->name }} @endauth </span>
+                <a href="#"><img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                </a>
             </div>
+        </div>
+        <div id="nav-menu" class="nav-menu">
+            <a href="{{ route('logout') }}" class="d-block p-2">Cerrar sesión</a>
         </div>
     </header>
     
@@ -79,5 +101,11 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            var menu = document.getElementById('nav-menu');
+            menu.classList.toggle('show');
+        });
+    </script>
 </body>
 </html>

@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
@@ -59,8 +60,8 @@ class LoginController extends Controller
             } elseif ($user->role == 'user') {
                 // return redirect()->intended(route('user.dashboard'));
                 return redirect(route("user"));
-            }elseif($user->role == "cajero"){
-                return redirect(route('cajero'));  
+            }elseif($user->role == "chef"){
+                return redirect(route('chef.pedidos'));  
             }
 
             return redirect()->intended(route('login'));

@@ -9,7 +9,7 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="{{asset("css/adm.css")}}">
 
-	<title>AdminHub</title>
+	<title>ASKER ADM</title>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
+			<span class="text">ASKER ADM</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -30,25 +30,25 @@
 			<li>
 				<a href="#">
 					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
+					<span class="text">Historial</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
+					<span class="text">Personal</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
+					<span class="text">Pedidos En curso</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
 					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
+					<span class="text">Mesas</span>
 				</a>
 			</li>
 		</ul>
@@ -97,6 +97,8 @@
 
 		<!-- MAIN -->
 		<main>
+
+
 			<!-- Contenido para Dashboard -->
 <section id="content-dashboard">
     <h1>Dashboard</h1>
@@ -104,25 +106,27 @@
 </section>
 
 <!-- Contenido para My Store -->
-<section id="content-my-store" style="display: none;">
-    <h1>My Store</h1>
+<section id="content-my-store" class="hidden">
+    <h1>Historial</h1>
     <p>Este es el contenido de My Store.</p>
+	<p>Este es el contenido de Dashboard.</p>
+
 </section>
 
 <!-- Contenido para Analytics -->
-<section id="content-analytics" style="display: none;">
-    <h1>Analytics</h1>
+<section id="content-analytics" class="hidden">
+    <h1>Personal</h1>
     <p>Este es el contenido de Analytics.</p>
 </section>
 
 <!-- Contenido para Message -->
-<section id="content-message" style="display: none;">
+<section id="content-message" class="hidden">
     <h1>Message</h1>
     <p>Este es el contenido de Message.</p>
 </section>
 
 <!-- Contenido para Team -->
-<section id="content-team" style="display: none;">
+<section id="content-team" class="hidden">
     <h1>Team</h1>
 	<form method="POST" action="{{route('validar-registro') }}">
         @csrf
@@ -147,7 +151,7 @@
 </section>
 
 <!-- Contenido para Settings -->
-<section id="content-settings" style="display: none;">
+<section id="content-settings" class="hidden">
     <h1>Settings</h1>
     <p>Este es el contenido de Settings.</p>
 </section>
@@ -161,6 +165,6 @@
 	<!-- CONTENT -->
 	
 
-	<script src="{{asset("js/admin/main.js")}}"></script>
+	<script src="{{asset('js/admin/main.js')}}"></script>
 </body>
 </html>

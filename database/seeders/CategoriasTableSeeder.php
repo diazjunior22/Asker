@@ -12,6 +12,23 @@ class CategoriasTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Categoria::factory()->count(3)->create();
+        Categoria::create([
+            'nombre' => 'perros',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'hamburguesas',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'pizza',
+        ]);
+
+        Categoria::create([
+            'nombre' => 'bebidas',
+        ]);
+        Categoria::create([
+            'nombre' => 'Asados',
+        ]);
     }
 }

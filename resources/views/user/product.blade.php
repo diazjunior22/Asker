@@ -4,40 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $producto->nombre }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div class="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden mt-10">
-        <div class="flex items-center justify-between p-4">
-            <a href="{{ route('mesa.show', $mesaId) }}" class="text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </a>
-            <img src="https://via.placeholder.com/40" alt="User" class="rounded-full">
-        </div>
-        <div class="text-center">
-            <img src="{{ $producto->imagen }}" alt="{{ $producto->nombre }}" class="w-full h-48 object-cover">
-            <h1 class="text-lg font-bold mt-4">{{ $producto->nombre }}</h1>
-            <p class="text-left px-8 py-4">{{ $producto->descripcion }}</p>
-        </div>
-        <div class="flex justify-between items-center px-8 py-4">
-            <div class="flex items-center space-x-2">
-                <button class="bg-orange-500 text-white p-2 rounded-full">-</button>
-                <span>1</span>
-                <button class="bg-orange-500 text-white p-2 rounded-full">+</button>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card mx-auto shadow-sm" style="max-width: 24rem;">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <a href="{{ route('mesa.show', $mesaId) }}" class="text-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-arrow-left" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+                    </svg>
+                </a>
+                <img src="https://via.placeholder.com/40" alt="User" class="rounded-circle">
             </div>
-            <div class="text-lg font-bold text-orange-500">Total ${{ $producto->precio }}</div>
-        </div>
-        <div class="flex justify-around p-4">
-            <button class="bg-orange-500 text-white px-4 py-2 rounded">DESCRIPCIÓN</button>
-            <button class="bg-orange-500 text-white px-4 py-2 rounded">Agregar</button>
-        </div>
+            <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}" class="card-img-top" style="object-fit: cover; height: 12rem;">
+            <div class="card-body text-center">
+    <h5 class="card-title fw-bold">{{ $producto->nombre }}</h5>
+    <p class="card-text text-start">{{ $producto->descripcion }}</p>
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- <div class="input-group">
+            <button class="btn btn-warning text-white">-</button>
+            <input type="text" class="form-control text-center" value="1" style="max-width: 50px;" name="cantidad">
+            <button class="btn btn-warning text-white">+</button>
+        </div> -->
+        <div class="text-lg fw-bold text-warning">Total ${{ $producto->precio }}</div>
     </div>
+    <div class="d-flex justify-content-around mt-4">
+        <form action="{{ route('carrito.agregar')}}" method="POST">
+            @csrf
+            <input type="hidden" name="producto_id" value="{{ $producto->id }}">
+            <input type="hidden" name="precio" value="{{ $producto->precio }}">
+            <input type="hidden" name="mesa_id" value="{{ $mesa->id }}"> <!-- Campo oculto para mesa_id -->
+            <input type="number" name="cantidad" class="form-control text-center" value="1" style="max-width: 50px;" min="1">
+            <textarea name="nota" class="form-control" placeholder="nota"></textarea>
+            <button class="btn btn-warning text-white">Agregar</button>
+        </form>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
