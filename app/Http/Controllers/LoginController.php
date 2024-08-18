@@ -61,7 +61,7 @@ class LoginController extends Controller
                 // return redirect()->intended(route('user.dashboard'));
                 return redirect(route("user"));
             }elseif($user->role == "chef"){
-                return redirect(route('pedidos.chef'));  
+                return redirect(route('chef.pedidos'));  
             }
 
             return redirect()->intended(route('login'));

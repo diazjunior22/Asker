@@ -167,7 +167,7 @@
                 <form action="{{ route('carrito.checkout') }}" method="POST">
                     @csrf
                     <input type="hidden" name="mesa_id" value="{{ $mesa_id }}">
-                    <button class="pay-button">Finalizar Pedido</button>
+                    <button class="pay-button">Enviar Pedido</button>
                 </form>
             </div>
         </div>

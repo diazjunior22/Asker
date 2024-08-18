@@ -22,17 +22,14 @@ protected $dates = ['fecha']; // O usa $casts si prefieres
 
     public function mesa()
     {
-        return $this->belongsTo(Mesa::class);
+        return $this->belongsTo(Mesa::class, 'id_mesa');
     }
-
 
 
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_usuario');
     }
-
-  
 
     public function detalles()
     {
@@ -48,6 +45,14 @@ protected $dates = ['fecha']; // O usa $casts si prefieres
     }
     
 
+    
+
+    
+    
+
+
 
 
 }
+
+

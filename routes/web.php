@@ -11,7 +11,8 @@ use App\Http\Controllers\PedidosController;
 
 use App\Models\Mesa;
 //ruta para ver mi usuario
-Route::view('/asker/meseroMesas/miperfil',"user.user_info")->name("miperfil");
+// web.php
+// Route::get('/meseroPerfil/{id}', [MeseroController::class, 'VerPerfil'])->name('perfil');
 
 
 
@@ -71,5 +72,6 @@ Route::get('/carrito/{id}/editar', [CarritoController::class, 'mostrarEdicion'])
 
 
 
-Route::get('/chef/pedido/{id}', [PedidosController::class, 'mostrarPedido'])->name('pedidos.chef');
+Route::get('/chef/pedidos', [PedidosController::class, 'index'])->name('chef.pedidos');
+Route::get('/chef/pedido/{id}', [PedidosController::class, 'show'])->name('chef.pedido');
 
