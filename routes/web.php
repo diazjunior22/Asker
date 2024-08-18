@@ -10,6 +10,12 @@ use App\Http\Controllers\PedidosController;
 
 
 use App\Models\Mesa;
+//ruta para ver mi usuario
+// web.php
+// Route::get('/meseroPerfil/{id}', [MeseroController::class, 'VerPerfil'])->name('perfil');
+
+
+
 
 // Ruta para mostrar la página de inicio de sesión
 Route::get('/', [LoginController::class, "principal"])->name('login');
@@ -63,4 +69,9 @@ Route::get('/carrito/{id}/editar', [CarritoController::class, 'mostrarEdicion'])
 
 
 // Ruta para mostrar los pedidos al chef
+
+
+
+Route::get('/chef/pedidos', [PedidosController::class, 'index'])->name('chef.pedidos');
+Route::get('/chef/pedido/{id}', [PedidosController::class, 'show'])->name('chef.pedido');
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Mesa;
 use App\Models\Producto;
 use App\Models\Categoria;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class MeseroController extends Controller
@@ -14,28 +16,6 @@ class MeseroController extends Controller
     public function inicio(){
         $mesas = Mesa::all();
         return view("user.user", compact('mesas'));
-    }
-
-
-
-
-    //aqui estamos mostrandos todos los producto de la base de datos y las categorias
-    public function productos($id, $categoria = null)
-    {
-        $mesa = Mesa::find($id);
-        $categorias = Categoria::all(); // Obtener todas las categorías
-    
-        if ($categoria === 'all') {
-            $productos = Producto::all();
-        } elseif ($categoria) {
-            $productos = Producto::join('categorias', 'productos.id_categoria', '=', 'categorias.id')
-                ->where('categorias.nombre', $categoria)
-                ->get();
-        } else {
-            $productos = Producto::all();
-        }
-    
-        return view('user.productos', compact('productos', 'mesa', 'categorias'));
     }
 
 
@@ -62,6 +42,43 @@ public function show($mesaId, $productoId)
     ]);
 }
 
+
+
+
+
+    //aqui estamos mostrandos todos los producto de la base de datos y las categorias
+    public function productos($id, $categoria = null)
+    {
+        $mesa = Mesa::find($id);
+        $categorias = Categoria::all(); // Obtener todas las categorías
+    
+        if ($categoria === 'all') {
+            $productos = Producto::all();
+        } elseif ($categoria) {
+            $productos = Producto::join('categorias', 'productos.id_categoria', '=', 'categorias.id')
+                ->where('categorias.nombre', $categoria)
+                ->get();
+        } else {
+            $productos = Producto::all();
+        }
+    
+        return view('user.productos', compact('productos', 'mesa', 'categorias'));
+    }
+
+
+// // ver mas informacion de mi perfil
+// public function VerPerfil($id)
+// {
+//     $user = User::find($id); // Obtener el usuario por ID
+
+//     if (!$user) {
+//         abort(404, 'Usuario no encontrado.');
+//     }
+
+//     return view('perfil', ['user' => $user]);
+
+
+// }
 
 
 

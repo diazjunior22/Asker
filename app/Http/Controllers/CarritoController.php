@@ -7,6 +7,8 @@ use App\Models\DetallePedido;
 use App\Models\Pedido;
 use App\Models\Producto;
 use App\Models\carrito;
+use App\Models\Mesa;
+
 
 class CarritoController extends Controller
 
@@ -41,68 +43,70 @@ class CarritoController extends Controller
 
     //mostrar todos los productos del carrito
     public function mostrarCarrito(Request $request, $mesa_id)
-    {
+
+    {    #aqui es para regresae cuando estes en carrito
+        $mesaId = Mesa::find($mesa_id);
+
         $items = Carrito::with('producto')
                     ->where('mesa_id', $mesa_id)
                     ->where('usuario_id', auth()->user()->id)
                     ->get();
     
-        return view('user.carrito', compact('items', 'mesa_id'));
+        return view('user.carrito', compact('items', 'mesa_id',"mesaId"));
     }
 
 
 
 
     public function checkout(Request $request)
-    {
-        $mesa_id = $request->mesa_id;
-    
-        // Obtener todos los productos del carrito para la mesa y usuario actual
-        $items = Carrito::with('producto') // Asegúrate de que `producto` es una relación definida
-                    ->where('mesa_id', $mesa_id)
-                    ->where('usuario_id', auth()->user()->id)
-                    ->get();
-    
-        if ($items->isEmpty()) {
-            return redirect()->back()->with('error', 'El carrito está vacío');
-        }
-    
-        // Crear el pedido
-        $pedido = Pedido::create([
-            'fecha' => now(),
-            'estado' => 'pending',
-            'total' => 0, // Se actualizará después
-            'id_mesa' => $mesa_id,
-            'id_usuario' => auth()->user()->id,
-        ]);
-    
-        // Crear los detalles del pedido y calcular el total
-        $total = 0;
-        foreach ($items as $item) {
-            $detalle = $pedido->detalles()->create([
-                'id_producto' => $item->producto_id, // Asegúrate de que este campo tiene un valor válido
-                'cantidad' => $item->cantidad,
-                'nota' => $item->nota,
-            ]);
-        
-            // Sumar al total (suponiendo que el precio se obtiene del producto relacionado)
-            $total += $item->producto->precio * $item->cantidad;
-        }
-        
-    
-        // Actualizar el total del pedido
-        $pedido->total = $total;
-        $pedido->save();
-    
-        // Limpiar el carrito para esta mesa y usuario
-        Carrito::where('mesa_id', $mesa_id)
-                    ->where('usuario_id', auth()->user()->id)
-                    ->delete();
-    
-        return redirect()->route('mesa.show', $pedido->id)->with('success', 'Pedido realizado con éxito');
-    }
-    
+{
+    $mesa_id = $request->mesa_id;
 
+    // Obtener todos los productos del carrito para la mesa y usuario actual
+    $items = Carrito::with('producto')
+                ->where('mesa_id', $mesa_id)
+                ->where('usuario_id', auth()->user()->id)
+                ->get();
+
+    if ($items->isEmpty()) {
+        return redirect()->back()->with('error', 'El carrito está vacío');
+    }
+
+    // Crear el pedido
+    $pedido = Pedido::create([
+        'fecha' => now(),
+        'estado' => 'pending',
+        'total' => 0,
+        'id_mesa' => $mesa_id,
+        'id_usuario' => auth()->user()->id,
+    ]);
+
+    // Crear los detalles del pedido y calcular el total
+    $total = 0;
+    foreach ($items as $item) {
+        $pedido->detalles()->create([
+            'id_producto' => $item->producto_id,
+            'cantidad' => $item->cantidad,
+            'nota' => $item->nota,
+        ]);
+
+        // Sumar al total
+        $total += $item->producto->precio * $item->cantidad;
+    }
+
+    // Actualizar el total del pedido
+    $pedido->total = $total;
+    $pedido->save();
+
+    // Limpiar el carrito para esta mesa y usuario
+    Carrito::where('mesa_id', $mesa_id)
+            ->where('usuario_id', auth()->user()->id)
+            ->delete();
+
+    // Redirigir al módulo del chef para que pueda ver el pedido
+    return redirect()->route('mesa.show', ['id' => $pedido->id])
+                     ->with('success', 'Pedido realizado con éxito y enviado al chef');
+}
 
 
 

@@ -17,13 +17,13 @@ class DetallePedido extends Model
         'nota',
     ];
 
-    public function pedido()
-    {
-        return $this->belongsTo(Pedido::class, 'id_pedido');
-    }
+    // public function pedido()
+    // {
+    //     return $this->belongsTo(Pedido::class, 'id_pedido');
+    // }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 }

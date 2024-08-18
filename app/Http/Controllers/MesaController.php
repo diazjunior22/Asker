@@ -11,19 +11,7 @@ use Illuminate\View\View;
 
 class MesaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     $mesas = Mesa::all();
 
-    //     return view('user.user', compact('mesas'));
-    // }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create(): View
     {
         $mesa = new Mesa();

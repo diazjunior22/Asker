@@ -73,39 +73,30 @@
             background-color: darkorange;
             border-color: darkorange;
         }
-
-
-.btn-dark {
-    background-color: black;
-    border-color: black;
-}
-
-.btn-dark.active {
-    background-color: black;
-    border-color: black;
-}
-
-.category-btn {
-    margin-right: 5px;
-}
-
-.category-btn.active {
-    background-color: black;
-    border-color: black;
-    color: white;
-}
-
-
-
+        .btn-dark {
+            background-color: black;
+            border-color: black;
+        }
+        .btn-dark.active {
+            background-color: black;
+            border-color: black;
+        }
+        .category-btn {
+            margin-bottom: 5px; /* Margin for buttons in stacked layout */
+        }
+        .category-btn.active {
+            background-color: black;
+            border-color: black;
+            color: white;
+        }
     </style>
 </head>
 <body class="bg-light">
     <header class="header bg-white shadow-sm">
         <div class="d-flex align-items-center">
-        <a class="btn btn-link text-dark" href="{{ route("user")}}">
-    &#x21A9;
-</a>
-
+            <a class="btn btn-link text-dark" href="{{ route('user')}}">
+                &#x21A9;
+            </a>
             <div class="status-container">
                 <label class="status-checkbox">
                     <input type="checkbox" id="status" checked>
@@ -127,33 +118,34 @@
                 <div class="input-group-append">
                     <button class="btn btn-orange text-white" type="button">&#x1F50D;</button>
                 </div>
-                <a href="{{route("carrito.mostrar", ['mesa_id' => $mesa->id])}}"><button class="btn btn-light ml-2" type="button">&#x1F6D2;</button>
+                <a href="{{route("carrito.mostrar", ['mesa_id' => $mesa->id])}}">
+                    <button class="btn btn-light ml-2" type="button">&#x1F6D2;</button>
                 </a>
             </div>
         </div>
 
-        <div class="btn-group mb-4" role="group">
-    <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => 'all']) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === 'all' ? 'active' : '' }}">All</a>
-    @foreach ($categorias as $categoria)
-        <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => $categoria->nombre]) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === $categoria->nombre ? 'active' : '' }}">{{ $categoria->nombre }}</a>
-    @endforeach
-</div>
+        <!-- Use flex-column for stacking on small screens, and flex-md-row for horizontal on larger screens -->
+        <div class="btn-group mb-4 d-flex flex-column flex-md-row" role="group">
+            <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => 'all']) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === 'all' ? 'active' : '' }}">All</a>
+            @foreach ($categorias as $categoria)
+                <a href="{{ route('mesa.show', ['id' => $mesa->id, 'categoria' => $categoria->nombre]) }}" class="btn btn-orange text-white category-btn {{ request('categoria') === $categoria->nombre ? 'active' : '' }}">{{ $categoria->nombre }}</a>
+            @endforeach
+        </div>
 
-<div class="row">
-        @foreach ($productos as $producto)
-    <div class="col-md-4 mb-4">
-        <a href="{{ route('producto.show', [$mesa->id, $producto->id]) }}" class="text-decoration-none text-dark">
-            <div class="card">
-                <img src="{{ asset($producto->imagen) }}" alt="Imagen del producto" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $producto->nombre }}</h5>
-                    <p class="card-text">Precio: {{ $producto->precio }}</p>
+        <div class="row">
+            @foreach ($productos as $producto)
+                <div class="col-6 col-md-4 col-lg-3 mb-4">
+                    <a href="{{ route('producto.show', [$mesa->id, $producto->id]) }}" class="text-decoration-none text-dark">
+                        <div class="card">
+                            <img src="{{ asset($producto->imagen) }}" alt="Imagen del producto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $producto->nombre }}</h5>
+                                <p class="card-text">Precio: {{ $producto->precio }}</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-        </a>
-    </div>
-@endforeach
-
+            @endforeach
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -161,56 +153,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.querySelectorAll('.category-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        // Remover la clase 'active' de todos los botones
-        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-
-        // Agregar la clase 'active' al botón clicado
-        this.classList.add('active');
-
-
-
-
-
-
-
-
-
-
-
-        $(document).ready(function() {
-            $('.category-btn').on('click', function() {
-                var category = $(this).data('category');
-
-                // Añadir la clase 'active' al botón seleccionado y quitarla de los demás
-                $('.category-btn').removeClass('active');
-                $(this).addClass('active');
-
-                // Filtrar los productos
-                if (category === 'all') {
-                    $('.producto-item').show();
-                } else {
-                    $('.producto-item').each(function() {
-                        var itemCategory = $(this).data('category');
-                        if (itemCategory === category) {
-                            $(this).show();
-                        } else {
-                            $(this).hide();
-                        }
-                    });
-                }
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
             });
         });
-
-
-
-
-
-
-
-    });
-});
-</script>
-
+    </script>
 </body>
 </html>

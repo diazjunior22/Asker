@@ -22,24 +22,37 @@ protected $dates = ['fecha']; // O usa $casts si prefieres
 
     public function mesa()
     {
-        return $this->belongsTo(Mesa::class);
+        return $this->belongsTo(Mesa::class, 'id_mesa');
     }
-
 
 
     public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_usuario');
     }
-
-    public function productos()
-    {
-        return $this->belongsToMany(Producto::class);
-    }
-
 
     public function detalles()
     {
         return $this->hasMany(DetallePedido::class, 'id_pedido');
     }
+
+
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'pedido_producto')
+                    ->withPivot('cantidad', 'precio')
+                    ->withTimestamps();
+    }
+    
+
+    
+
+    
+    
+
+
+
+
 }
+
+
