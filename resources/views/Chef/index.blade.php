@@ -7,7 +7,7 @@
         @foreach($pedidos as $pedido)
             <li>
                 Pedido #{{ $pedido->id }} - Mesa: {{ $pedido->mesa->numero }} - Mesero: {{ $pedido->usuario->name }}
-                <a href="{{ route('chef.pedido', $pedido->id) }}">Ver detalles</a>
+                <a href="{{ route('mostrar.pedido', $pedido->id) }}">Ver detalles</a>
             </li>
         @endforeach
     </ul>

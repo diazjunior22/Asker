@@ -27,4 +27,26 @@ class PedidosController extends Controller
   }
   
 
+
+// PedidoController.php
+public function destroy($id)
+{
+    // Encuentra el pedido por su id
+    $pedido = Pedido::find($id);
+
+    if ($pedido) {
+        // Elimina el pedido
+        $pedido->delete();
+
+        // Redirige a la lista de pedidos con un mensaje de éxito
+        return redirect()->route('chef.pedidos')->with('success', 'Pedido eliminado exitosamente.');
+    } else {
+        // Si no se encuentra el pedido, redirige con un mensaje de error
+        return redirect()->route('chef.pedidos')->with('error', 'Pedido no encontrado.');
+    }
+}
+
+
+
+
 }

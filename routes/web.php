@@ -73,5 +73,6 @@ Route::get('/carrito/{id}/editar', [CarritoController::class, 'mostrarEdicion'])
 
 
 Route::get('/chef/pedidos', [PedidosController::class, 'index'])->name('chef.pedidos');
-Route::get('/chef/pedido/{id}', [PedidosController::class, 'show'])->name('chef.pedido');
+Route::get('/chef/pedidos/{id}', [PedidosController::class, 'show'])->name('mostrar.pedido');
+Route::delete('pedidos/{id}', [PedidosController::class, 'destroy'])->name('pedidos.destroy');
 
