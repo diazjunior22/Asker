@@ -73,7 +73,7 @@
                                 <span class="text-muted ms-3">Fecha: {{ $pedido->created_at->format('d-m-Y H:i') }}</span>
                             </div>
                             <div>
-
+g
                                 <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
