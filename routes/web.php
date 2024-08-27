@@ -12,9 +12,7 @@ use App\Http\Controllers\PedidosController;
 use App\Models\Mesa;
 //ruta para ver mi usuario
 // web.php
-// Route::get('/meseroPerfil/{id}', [MeseroController::class, 'VerPerfil'])->name('perfil');
-
-
+Route::get('/meseroPerfil/{id}', [MeseroController::class, 'VerPerfil'])->name('perfil');
 
 
 // Ruta para mostrar la página de inicio de sesión

@@ -10,18 +10,18 @@ use App\Models\Producto;
 use App\Models\Mesa;
 
 
-class ProductController extends Controller
-{
-    public function show($mesaId, $productoId)
-    {
-        $producto = Producto::find($productoId);
-        $mesaId = Mesa::find($mesaId);
+// class ProductController extends Controller
+// {
+//     public function show($mesaId, $productoId)
+//     {
+//         $producto = Producto::find($productoId);
+//         $mesaId = Mesa::find($mesaId);
 
-        if (!$producto) {
-            abort(404);
-        }
-        return redirect()->route('producto.show', ['mesaId' => $mesaId, 'productoId' => $productoId]);
+//         if (!$producto) {
+//             abort(404);
+//         }
+//         return redirect()->route('producto.show', ['mesaId' => $mesaId, 'productoId' => $productoId]);
 
-    }
-}
+//     }
+// }
 

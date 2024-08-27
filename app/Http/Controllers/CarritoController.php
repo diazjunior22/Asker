@@ -14,7 +14,7 @@ class CarritoController extends Controller
 
 { 
    
-
+#con esta function estamos agregando los productos al carrito 
     public function agregar(Request $request)
     {
         // Validar datos
@@ -26,7 +26,7 @@ class CarritoController extends Controller
             'mesa_id' => 'required|integer|exists:mesas,id',
         ]);
     
-        // Agregar el producto al carrito 
+        // Agregar el producto 
         $carrito = Carrito::create([
             'producto_id' => $request->producto_id,
             'mesa_id' => $request->mesa_id,
@@ -35,13 +35,14 @@ class CarritoController extends Controller
             'nota' => $request->nota,
             'usuario_id' => auth()->user()->id, // Establece el usuario propietario del carrito
         ]);
+        return redirect()->route('mesa.show', ['id' => $request->mesa_id])
+        ->with('success', 'Producto agregado al carrito con éxito');
     
-        return redirect()->back()->with('success', 'Producto agregado al carrito con éxito');
     }
 
 
 
-    //mostrar todos los productos del carrito
+    //mostrar todos los productos del carrito  a la hora de hacer click en el icono
     public function mostrarCarrito(Request $request, $mesa_id)
 
     {    #aqui es para regresae cuando estes en carrito
@@ -57,6 +58,8 @@ class CarritoController extends Controller
 
 
 
+
+    # aqui estamos enviando todos los productos del carrito a un pedido
 
     public function checkout(Request $request)
 {
@@ -98,13 +101,13 @@ class CarritoController extends Controller
     $pedido->total = $total;
     $pedido->save();
 
-    // Limpiar el carrito para esta mesa y usuario
-    Carrito::where('mesa_id', $mesa_id)
-            ->where('usuario_id', auth()->user()->id)
-            ->delete();
+    // // Limpiar el carrito para esta mesa y usuario
+    // Carrito::where('mesa_id', $mesa_id)
+    //         ->where('usuario_id', auth()->user()->id)
+    //         ->delete();
 
     // Redirigir al módulo del chef para que pueda ver el pedido
-    return redirect()->route('mesa.show', ['id' => $pedido->id])
+    return redirect()->route('mesa.show', ['id' => $mesa_id])
                      ->with('success', 'Pedido realizado con éxito y enviado al chef');
 }
 

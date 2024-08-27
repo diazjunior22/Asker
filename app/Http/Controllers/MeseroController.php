@@ -12,18 +12,17 @@ use Illuminate\Support\Facades\Auth;
 
 class MeseroController extends Controller
 {
-    //aqui estamos retornarnos todas las mesas
+    //       aqui estamos retornarnos todas las mesas
     public function inicio(){
         $mesas = Mesa::all();
-        return view("user.user", compact('mesas'));
+        $user = Auth::user(); // Obtiene el usuario 
+        
+        return view("user.user", compact('mesas', 'user'));
+
+        
     }
-
-
-
-
-
     
-//aqui mostramos producto por producto mas detallado
+//        aqui mostramos producto por producto mas detallado
 public function show($mesaId, $productoId)
 {
     // Obtener el producto por su ID
@@ -41,10 +40,6 @@ public function show($mesaId, $productoId)
         'mesa' => $mesa
     ]);
 }
-
-
-
-
 
     //aqui estamos mostrandos todos los producto de la base de datos y las categorias
     public function productos($id, $categoria = null)
@@ -66,19 +61,19 @@ public function show($mesaId, $productoId)
     }
 
 
-// // ver mas informacion de mi perfil
-// public function VerPerfil($id)
-// {
-//     $user = User::find($id); // Obtener el usuario por ID
+// ver mas informacion de mi perfil
+public function VerPerfil()
+{
+    $user = Auth::user(); // Obtiene el usuario 
 
-//     if (!$user) {
-//         abort(404, 'Usuario no encontrado.');
-//     }
+    if (!$user) {
+        abort(404, 'Usuario no encontrado.');
+    }
 
-//     return view('perfil', ['user' => $user]);
+    return view('user.perfil', ['user' => $user]);
 
 
-// }
+}
 
 
 

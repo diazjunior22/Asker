@@ -99,11 +99,14 @@
             </a>
             <div class="status-container">
                 <label class="status-checkbox">
-                    <input type="checkbox" id="status" checked>
+                    <input type="checkbox" id="status" disabled>
                     <span class="status-slider"></span>
                 </label>
-                <label for="status" class="status-label">OCUPADA</label>
+                <label for="status" id="status-text" class="status-label">OCUPADA</label>
             </div>
+
+
+</label>
         </div>
         <div class="d-flex align-items-center">
             <span class="mr-2">mesero02</span>
@@ -158,6 +161,17 @@
                 this.classList.add('active');
             });
         });
+
+        document.querySelector('.status-checkbox').addEventListener('click', function() {
+        var checkbox = document.getElementById('status');
+        if (checkbox.disabled) {
+        checkbox.disabled = false;
+        checkbox.checked = true; // Opcional: Marca el checkbox automáticamente
+    }
+});
+
+
+
     </script>
 </body>
 </html>
