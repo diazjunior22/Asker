@@ -1,12 +1,15 @@
 <?php
 
 // use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdmController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController; // Asegúrate de importar el controlador correcto
 use App\Http\Controllers\MeseroController ;
 use App\Http\Controllers\MesaController ;
 use App\Http\Controllers\CarritoController ;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\AdmControllerController;
+
 
 
 use App\Models\Mesa;
@@ -21,9 +24,17 @@ Route::get('/', [LoginController::class, "principal"])->name('login');
 // Ruta para mostrar la página de registro
 // Route::view('/registro', 'registro')->name('registro');
 
-// Ruta para mostrar la página privada (necesitarás protegerla con middleware más adelante)
-Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
-->name('privada');
+//!Ruta para mostrar la página privada (necesitarás protegerla con middleware más adelante)  RUTA DEL ADMINISTRADOR
+// Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
+// ->name('privada');
+Route::get('/admin/users', [AdmController::class, 'index'])->name('admin.index');
+Route::get('/users/create', [AdmController::class, 'create'])->name('users.create');
+Route::post('/users', [AdmController::class, 'store'])->name('users.store');
+Route::get('/users/{id}/edit', [AdmController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [AdmController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [AdmController::class, 'destroy'])->name('users.destroy');
+
+//!----------------------------------------------------------------------------------------------
 
 Route::get('asker/meseroMesas', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login
 ->name('user');

@@ -78,37 +78,3 @@ switchMode.addEventListener('change', function () {
 
 
 
-
-
-//CAMBIAR LAS SECCIONES
-    // Función para ocultar todos los contenidos principales
-    document.addEventListener('DOMContentLoaded', function() {
-        // Manejar clics en enlaces del sidebar
-        const sidebarLinks = document.querySelectorAll('#sidebar .side-menu li a');
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Evitar comportamiento predeterminado del enlace
-
-                // Remover la clase 'active' de todos los enlaces del sidebar
-                sidebarLinks.forEach(l => l.parentElement.classList.remove('active'));
-                // Agregar la clase 'active' al enlace clickeado
-                link.parentElement.classList.add('active');
-
-                // Ocultar todos los contenidos principales
-                hideAllContents();
-
-                // Determinar qué contenido mostrar según el enlace clickeado
-                const target = link.getAttribute('data-target');
-                document.getElementById(target).classList.remove('hidden');
-            });
-        });
-
-        function hideAllContents() {
-            const contents = document.querySelectorAll('main section');
-            contents.forEach(content => content.classList.add('hidden'));
-        }
-
-        // Inicialmente ocultar todos los contenidos excepto el dashboard
-        hideAllContents();
-        document.getElementById('content-dashboard').classList.remove('hidden');
-    });
