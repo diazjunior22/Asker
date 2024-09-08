@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Editar Usuario</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
 </head>
 <body>
     <h1>Editar Usuario</h1>

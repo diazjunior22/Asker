@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $producto->nombre }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            
+        }
+        .avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
         }
     </style>
 </head>
@@ -20,7 +28,7 @@
                         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H3.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708.708L3.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
                     </svg>
                 </a>
-                <img src="https://via.placeholder.com/40" alt="User" class="rounded-circle">
+                <img src="{{ asset('img/pixelcut.png') }}" alt="User" class="avatar">
             </div>
             <img src="{{ asset($producto->imagen) }}" alt="{{ $producto->nombre }}" class="card-img-top" style="object-fit: cover; height: 12rem;">
             <div class="card-body text-center">

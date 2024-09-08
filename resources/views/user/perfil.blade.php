@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Usuario</title>
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -120,13 +122,17 @@
 <body>
     <div class="profile-container">
         <div class="profile-header">
+        <a class="btn btn-link text-dark" href="{{ url()->previous() }}">
+            &#x21A9;
+        </a>
             <h2>Perfil</h2>
             <div class="options-button" onclick="toggleOptions()">⋯</div>
         </div>
         <div class="profile-content">
             <div class="profile-picture">
                 <a href="#">
-                    <img src="https://via.placeholder.com/120" alt="User Avatar" class="avatar">
+                <img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar">
+
                 </a>
             </div>
             <div class="profile-info">
@@ -153,9 +159,13 @@
             </div>
         </div>
         <div class="options-menu" id="optionsMenu">
-            <a href="#">Editar Perfil</a>
-            <a href="#">Cambiar Contraseña</a>
-            <a href="#">Cerrar Sesión</a>
+        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+         @csrf
+            <button type="submit" class="logout-btn">
+                <i class='bx bxs-log-out-circle'></i>
+                <span class="text">Logout</span>
+            </button>
+        </form>
         </div>
     </div>
 

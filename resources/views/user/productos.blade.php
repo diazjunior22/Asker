@@ -6,6 +6,8 @@
     <title>Mesa 01 - Ocupada</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -109,8 +111,8 @@
 </label>
         </div>
         <div class="d-flex align-items-center">
-            <span class="mr-2">mesero02</span>
-            <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+            <span class="mr-2">mesero  @auth {{ Auth::user()->name }} @endauth</span>
+            <a href="{{route('perfil', $user->id )}}"><img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar"></a>
         </div>
     </header>
     <main class="container mt-4">

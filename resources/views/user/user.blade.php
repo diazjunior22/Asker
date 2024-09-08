@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Página privada</title>
+    <title>Mesero </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
 
     <style>
         body {
@@ -64,27 +66,17 @@
 </head>
 
 <body class="bg-light">
-<header class="bg-white shadow-sm p-3 mb-4">
-        <div class="d-flex justify-content-between align-items-center">
+    <header class="bg-white shadow-sm p-3 mb-4">
+    <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-                <button id="menu-toggle" class="btn btn-link text-dark p-0 mr-3">&#9776;</button>
                 <h1 class="h4 font-weight-bold m-0">ASKER</h1>
             </div>
             <div class="d-flex align-items-center">
                 <span class="mr-2">mesero, @auth {{ Auth::user()->name }} @endauth </span>
-                <a href="{{route('perfil', $user->id )}}"><img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                <a href="{{route('perfil', $user->id )}}"><img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar"></a>
                 </a>
             </div>
-        </div>
-        <div id="nav-menu" class="nav-menu">
-        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-        @csrf
-        <button type="submit" class="logout-btn">
-            <i class='bx bxs-log-out-circle'></i>
-            <span class="text">Logout</span>
-        </button>
-        </form>
-        </div>
+    </div>
     </header>
     
     <main class="container">

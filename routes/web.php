@@ -23,20 +23,23 @@ Route::get('/', [LoginController::class, "principal"])->name('login');
 // Ruta para mostrar la página de registro
 
 
-//!Ruta para mostrar la página privada (necesitarás protegerla con middleware más adelante)  RUTA DEL ADMINISTRADOR
-// Route::view('/privado', 'admin.secret')->middleware("auth") //middleware seguridad para que entren si o si por login
-// ->name('privada');
-Route::get('/admin/users', [AdmController::class, 'index'])->name('admin.index');
-Route::get('/users/create', [AdmController::class, 'create'])->name('users.create');
-Route::post('/users', [AdmController::class, 'store'])->name('users.store');
-Route::get('/users/{id}/edit', [AdmController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [AdmController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [AdmController::class, 'destroy'])->name('users.destroy');
+//! RUTAs DEL ADMINISTRADOR
+//Iniico de admin
+Route::get('/admin', [AdmController::class, 'index'])->name('admin.index')->middleware("auth");
+//crear un nuevo usuario
+Route::get('/users/create', [AdmController::class, 'create'])->name('users.create')->middleware("auth");
+Route::post('/users', [AdmController::class, 'store'])->name('users.store')->middleware("auth");
+//para editar el usuario
+Route::get('/users/{id}/edit', [AdmController::class, 'edit'])->name('users.edit')->middleware("auth");
+Route::put('/users/{id}', [AdmController::class, 'update'])->name('users.update')->middleware("auth");
+// para eliminar el usuario
+Route::delete('/users/{id}', [AdmController::class, 'destroy'])->name('users.destroy')->middleware("auth");
 
-
+//MESA   RUTA PARA CREAR LAS MESAS 
 Route::get('/mesas/create', [MesaController::class, 'create'])->name('mesas.create');
-// Almacenar una nueva mesa
 Route::post('/mesas', [MesaController::class, 'store'])->name('mesas.store');
+
+Route::delete('/mesas/{mesa}', [MesaController::class, 'destroy'])->name('mesas.destroy');
 
 
 //!----------------------------------------------------------------------------------------------

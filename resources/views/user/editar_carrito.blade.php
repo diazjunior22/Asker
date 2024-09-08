@@ -6,6 +6,8 @@
     <title>Editar Producto en el Carrito</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <style>
         .btn-orange {
             background-color: #FF6600;

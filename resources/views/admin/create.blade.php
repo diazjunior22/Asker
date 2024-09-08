@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Crear Usuario</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
 </head>
 <body>
     <h1>Crear Usuario</h1>

@@ -29,5 +29,31 @@ class MesaController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Mesa creada exitosamente.');
     }
+
+
+    public function destroy($id)
+    {
+        // Encuentra la mesa por su ID
+        $mesa = Mesa::findOrFail($id);
+
+        // Elimina la mesa de la base de datos
+        $mesa->delete();
+
+        // Redirige con un mensaje de éxito
+        return redirect()->route('admin.index')->with('success', 'Mesa eliminada correctamente.');
+    }
+
+   
 }
+
+
+
+
+
+
+
+
+
+
+
 

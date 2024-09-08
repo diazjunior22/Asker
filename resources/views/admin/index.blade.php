@@ -18,6 +18,7 @@
 		<a href="#" class="brand">
 			<i class='bx bxs-smile'></i>
 			<span class="text">ASKER AD</span>
+
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -72,16 +73,25 @@
 	</section>
 	<!-- SIDEBAR -->
 
-
-
-
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">menu</a>
-		</nav>
+		<nav class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+        <i class='bx bx-menu' style="font-size: 24px; cursor: pointer;"></i>
+        <a href="#" class="nav-link ml-2">Menu</a>
+    </div>
+    <!-- Agregar ml-auto para alinear el contenido a la derecha -->
+    <div class="d-flex align-items-center ml-auto">
+        <span class="mr-2">Admin, @auth {{ Auth::user()->name }} @endauth </span>
+        <a href="{{ route('perfil', $user->id ) }}">
+            <img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%;">
+        </a>
+    </div>
+</nav>
+
+
+
 		<!-- NAVBAR -->
 
 		<!-- MAIN -->
@@ -89,6 +99,7 @@
 			<!-- Secciones -->
             
 			<section id="dashboard">
+
 				<h1>Dashboard</h1>
 				<p>Este es el contenido de Dashboard.</p>
 			</section>
@@ -96,7 +107,7 @@
 			<section id="historial" class="hidden">
                     <h1>HISTORIAL</h1>
 			</section>
-
+		<!-- AQUI ESTA LA SECTION DEL PERSONAL  -->
 			<section id="personal" class="hidden">
 				<h1>Personal</h1>
 				<p>Este es el contenido de Personal.</p>
@@ -135,7 +146,7 @@
                         </tbody>
                     </table>
 			</section>
-
+		<!-- AQUI ESTA LA SECTION DEL los Pedidos  -->
 			<section id="pedidos-en-curso" class="hidden">
 				<h1>Pedidos en Curso</h1>
     <!-- Tabla de Pedidos -->
@@ -187,10 +198,11 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Numero</th>
+                <th>Número</th>
                 <th>Capacidad</th>
                 <th>Estado</th>
                 <th>Imagen</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -201,11 +213,20 @@
                     <td>{{ $mesa->capacidad }}</td>
                     <td>{{ $mesa->estado }}</td>
                     <td><img src="{{ $mesa->imagen }}" alt="Imagen de Mesa" style="width: 100px;"></td>
+                    <td>
+                        <!-- Botón para eliminar mesa -->
+                        <form action="{{ route('mesas.destroy', $mesa->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta mesa?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-</section>
+			</section>
+
 
 		<section id="settings" class="hidden">
 				<h1>Settings</h1>
@@ -328,6 +349,12 @@ switchMode.addEventListener('change', function () {
 		.hidden {
 			display: none;
 		}
+
+		.avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
 	</style>
 </body>
 </html>

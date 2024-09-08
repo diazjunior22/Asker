@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Mesa;
 use App\Models\Pedido;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -17,12 +19,14 @@ class AdmController extends Controller
     // Cargar todos los usuarios directamente de la tabla
     $users = User::all(); // Asume que los roles están en la misma tabla de usuarios
     $mesas = Mesa::all();
+    $user = Auth::user(); // Obtiene el usuario 
+
     $pedidos = Pedido::with('detalles.producto', 'mesa', 'usuario')
     ->where('estado', 'pending')
     ->get();
 
     $totalMesas = $mesas->count();
-    return view('admin.index', compact('users', "totalMesas",  "mesas",  "pedidos"));
+    return view('admin.index', compact('users', "totalMesas",  "mesas",  "pedidos", "user"));
 }
 
 

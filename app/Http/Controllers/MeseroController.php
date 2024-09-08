@@ -46,7 +46,8 @@ public function show($mesaId, $productoId)
     {
         $mesa = Mesa::find($id);
         $categorias = Categoria::all(); // Obtener todas las categorías
-    
+        $user = Auth::user(); // Obtiene el usuario 
+        
         if ($categoria === 'all') {
             $productos = Producto::all();
         } elseif ($categoria) {
@@ -57,7 +58,7 @@ public function show($mesaId, $productoId)
             $productos = Producto::all();
         }
     
-        return view('user.productos', compact('productos', 'mesa', 'categorias'));
+        return view('user.productos', compact('productos', 'mesa', 'categorias', "user"));
     }
 
 
