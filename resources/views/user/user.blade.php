@@ -77,7 +77,13 @@
             </div>
         </div>
         <div id="nav-menu" class="nav-menu">
-            <a href="{{ route('logout') }}" class="d-block p-2">Cerrar sesión</a>
+        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="logout-btn">
+            <i class='bx bxs-log-out-circle'></i>
+            <span class="text">Logout</span>
+        </button>
+        </form>
         </div>
     </header>
     

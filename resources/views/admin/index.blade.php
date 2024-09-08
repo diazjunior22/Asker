@@ -59,11 +59,15 @@
 				</a>
 			</li>
 			<li>
-				<a href="{{route('logout')}}" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>
+    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="logout-btn">
+            <i class='bx bxs-log-out-circle'></i>
+            <span class="text">Logout</span>
+        </button>
+    </form>
+</li>
+
 		</ul>
 	</section>
 	<!-- SIDEBAR -->
@@ -77,19 +81,6 @@
 		<nav>
 			<i class='bx bx-menu' ></i>
 			<a href="#" class="nav-link">menu</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-				</div>
-			</form>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
 		</nav>
 		<!-- NAVBAR -->
 
@@ -216,7 +207,7 @@
     </table>
 </section>
 
-			<section id="settings" class="hidden">
+		<section id="settings" class="hidden">
 				<h1>Settings</h1>
 				<p>Este es el contenido de Settings.</p>
 			</section>

@@ -112,6 +112,25 @@ class CarritoController extends Controller
 }
 
 
+public function finalizar(Request $request)
+    {
+        $mesa_id = $request->input('mesa_id');
+        $usuario_id = auth()->user()->id;
+
+        // Limpiar el carrito para esta mesa y usuario
+        Carrito::where('mesa_id', $mesa_id)
+               ->where('usuario_id', $usuario_id)
+               ->delete();
+
+        // Redirigir a la vista de confirmación del pedido
+        return redirect()->route('user');
+    }
+
+
+
+
+
+
 
 
 

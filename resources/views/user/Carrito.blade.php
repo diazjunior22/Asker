@@ -169,6 +169,11 @@
                     <input type="hidden" name="mesa_id" value="{{ $mesa_id }}">
                     <button class="pay-button">Enviar Pedido</button>
                 </form>
+                <form action="{{ route('carrito.finalizado') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="mesa_id" value="{{ $mesa_id }}">
+                    <button class="pay-button">Finalizar Pedido</button>
+                </form>
             </div>
         </div>
     </div>
