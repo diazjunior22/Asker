@@ -51,7 +51,7 @@ class MesaSeeder extends Seeder
         ]);
 
         Mesa::create([
-            'numero' => 5,
+            'numero' => 6,
             'capacidad' => 10,
             'estado' => 'Disponible',
             'imagen' => 'https://muma.co/wp-content/uploads/2023/07/MESA-CBP-CIRCULAR.png'

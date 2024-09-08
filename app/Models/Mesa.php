@@ -10,7 +10,7 @@ class Mesa extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre',
+        'numero',
         'estado',
         'capacidad',
         'imagen',

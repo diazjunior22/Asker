@@ -34,6 +34,12 @@ Route::get('/users/{id}/edit', [AdmController::class, 'edit'])->name('users.edit
 Route::put('/users/{id}', [AdmController::class, 'update'])->name('users.update');
 Route::delete('/users/{id}', [AdmController::class, 'destroy'])->name('users.destroy');
 
+
+Route::get('/mesas/create', [MesaController::class, 'create'])->name('mesas.create');
+// Almacenar una nueva mesa
+Route::post('/mesas', [MesaController::class, 'store'])->name('mesas.store');
+
+
 //!----------------------------------------------------------------------------------------------
 
 Route::get('asker/meseroMesas', [MeseroController::class, "inicio"])->middleware("auth") //middleware seguridad para que entren si o si por login

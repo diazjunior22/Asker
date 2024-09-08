@@ -14,9 +14,14 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
 
-        <label for="role">Rol:</label>
-        <input type="text" id="role" name="role" required>
-
+        <label for="role">Rol</label>
+        <select id="role" name="role" required>
+            @foreach($roles as $role)
+                <option value="{{ $role->role }}" {{ old('role') == $role->role ? 'selected' : '' }}>
+                    {{ ucfirst($role->role) }}
+                </option>
+            @endforeach
+        </select>     
         <label for="password">Contraseña:</label>
         <input type="password" id="password" name="password" required>
 

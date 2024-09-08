@@ -147,43 +147,46 @@
 
 			<section id="pedidos-en-curso" class="hidden">
 				<h1>Pedidos en Curso</h1>
-
     <!-- Tabla de Pedidos -->
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Fecha</th>
-                <th>Usuario</th>
-                <th>Mesa</th>
-                <th>Detalles</th>
-                <th>Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($pedidos as $pedido)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
-                    <td>{{ $pedido->usuario->nombre }}</td>
-                    <td>{{ $pedido->mesa->numero }}</td>
-                    <td>
-                        <ul>
-                            @foreach ($pedido->detalles as $detalle)
-                                <li>{{ $detalle->producto->nombre }} - Cantidad: {{ $detalle->cantidad }}</li>
-                            @endforeach
-                        </ul>
-                    </td>
-                    <td>{{ $pedido->estado }}</td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+   					<table class="table">
+   					    <thead>
+   					        <tr>
+   					            <th>#</th>
+   					            <th>Fecha</th>
+   					            <th>Usuario</th>
+   					            <th>Mesa</th>
+   					            <th>Detalles</th>
+   					            <th>Estado</th>
+   					        </tr>
+   					    </thead>
+   					    <tbody>
+   					        @foreach ($pedidos as $pedido)
+   					            <tr>
+   					                <td>{{ $loop->iteration }}</td>
+   					                <td>{{ $pedido->created_at->format('d/m/Y H:i') }}</td>
+   					                <td>{{ $pedido->usuario->nombre }}</td>
+   					                <td>{{ $pedido->mesa->numero }}</td>
+   					                <td>
+   					                    <ul>
+   					                        @foreach ($pedido->detalles as $detalle)
+   					                            <li>{{ $detalle->producto->nombre }} - Cantidad: {{ $detalle->cantidad }}</li>
+   					                        @endforeach
+   					                    </ul>
+   					                </td>
+   					                <td>{{ $pedido->estado }}</td>
+   					            </tr>
+   					        @endforeach
+   					    </tbody>
+   					</table>
 			</section>
 
 			<section id="mesas" class="hidden">
-				<h1>Mesas</h1>
-				<h1>Mesas</h1>
+    <h1>Mesas</h1>
+    
+    <!-- Botón para agregar nuevas mesas -->
+    <form action="{{ route('mesas.create') }}" method="get" style="display: inline;">
+        <button type="submit" id="btn-add-mesa" class="btn btn-primary">Agregar Nueva Mesa</button>
+    </form>
 
     <!-- Conteo Total de Mesas -->
     <p>Total de Mesas: {{ $totalMesas }}</p>
@@ -211,7 +214,7 @@
             @endforeach
         </tbody>
     </table>
-			</section>
+</section>
 
 			<section id="settings" class="hidden">
 				<h1>Settings</h1>

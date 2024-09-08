@@ -24,6 +24,11 @@
                 </option>
             @endforeach
         </select>
+        <label for="password">Contraseña (déjalo en blanco si no deseas cambiarla):</label>
+        <input type="password" id="password" name="password">
+
+        <label for="password_confirmation">Confirmar Contraseña:</label>
+        <input type="password" id="password_confirmation" name="password_confirmation">
 
 
         <button type="submit">Actualizar</button>

@@ -27,9 +27,10 @@ class AdmController extends Controller
 
 
 // Mostrar el formulario de creación de usuario
-public function create()
-{
-    return view('admin.create');
+public function create(){
+$roles = User::select('role')->distinct()->get(); 
+
+    return view('admin.create', compact("roles"));
 }
 
 // Almacenar un nuevo usuario
@@ -59,7 +60,7 @@ public function edit($id)
     $user = User::findOrFail($id);
 
     // Define los roles disponibles
-    $roles = ['admin', 'editor', 'user']; // Ajusta estos roles según sea necesario
+    $roles = ['admin', 'chef', 'user']; // Ajusta estos roles según sea necesario
 
     return view('admin.edit', compact('user', 'roles'));
 }
@@ -71,13 +72,26 @@ public function update(Request $request, $id)
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email,' . $id,
         'role' => 'required|string|max:50',
+        'password' => 'nullable|string|min:8|confirmed', // Validación para la contraseña
     ]);
 
     $user = User::findOrFail($id);
-    $user->update($validated);
+    
+    // Actualiza los datos del usuario
+    $user->name = $validated['name'];
+    $user->email = $validated['email'];
+    $user->role = $validated['role'];
+
+    // Actualiza la contraseña solo si se ha proporcionado una nueva
+    if ($request->filled('password')) {
+        $user->password = Hash::make($validated['password']);
+    }
+
+    $user->save();
 
     return redirect()->route('admin.index')->with('success', 'Usuario actualizado exitosamente.');
 }
+
 
 // Eliminar un usuario
 public function destroy($id)
