@@ -45,34 +45,36 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // Validar las credenciales
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
-        $remember = ($request->has("remember") ? true:false);
+    
+        $remember = ($request->has("remember") ? true : false);
+    
+        // Intentar autenticar al usuario
         if (Auth::attempt($credentials, $remember)) { 
-            $request->session()->regenerate(); //que prepare la session
+            $request->session()->regenerate(); // Regenerar la sesión
+    
             $user = Auth::user();
             if ($user->role == 'admin') {
-                // return redirect()->intended(route('admin.dashboard'));
-                return redirect(route("admin.index"));
+                return redirect()->route("admin.index");
             } elseif ($user->role == 'user') {
-                // return redirect()->intended(route('user.dashboard'));
-                return redirect(route("user"));
-            }elseif($user->role == "chef"){
-                return redirect(route('chef.pedidos'));  
+                return redirect()->route("user");
+            } elseif ($user->role == "chef") {
+                return redirect()->route('chef.pedidos');
             }
-
-            return redirect()->intended(route('login'));
-        } else {
-            return redirect('login')->withErrors([
-                'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
-            ]);
-        }
-
-
+        } 
+    
+        // Si la autenticación falla, redirigir de nuevo al formulario de login con un mensaje de error
+        return redirect()->back()->withErrors([
+            'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+            'password' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
+        ])->onlyInput('email');
     }
+    
+
 
     public function logout(Request $request)
     {
