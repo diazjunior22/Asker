@@ -28,12 +28,6 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" data-target="historial">
-					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">Historial</span>
-				</a>
-			</li>
-			<li>
 				<a href="#" data-target="personal">
 					<i class='bx bxs-doughnut-chart' ></i>
 					<span class="text">Personal</span>
@@ -76,19 +70,24 @@
 	<!-- CONTENT -->
 	<section id="content">
 		<!-- NAVBAR -->
-		<nav class="d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
-        <i class='bx bx-menu' style="font-size: 24px; cursor: pointer;"></i>
-        <a href="#" class="nav-link ml-2">Menu</a>
-    </div>
-    <!-- Agregar ml-auto para alinear el contenido a la derecha -->
-    <div class="d-flex align-items-center ml-auto">
-        <span class="mr-2">Admin, @auth {{ Auth::user()->name }} @endauth </span>
-        <a href="{{ route('perfil', $user->id ) }}">
-            <img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar" style="width: 30px; height: 30px; border-radius: 50%;">
-        </a>
-    </div>
-</nav>
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">menu</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="Search...">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<input type="checkbox" id="switch-mode" hidden>
+			<label for="switch-mode" class="switch-mode"></label>
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+				<span class="num">8</span>
+			</a>
+			<a href="{{route('perfil', $user->id )}}"><img src="{{ asset('img/pixelcut.png') }}" alt="User Avatar" class="avatar"></a>
+			</a>
+		</nav>
 
 
 
