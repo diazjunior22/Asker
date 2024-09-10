@@ -48,10 +48,6 @@
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="#" data-target="settings">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
 			</li>
 			<li>
     <form action="{{ route('logout') }}" method="POST" style="display:inline;">

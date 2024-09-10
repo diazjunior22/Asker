@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="60">
     <title>Pedidos Pendientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -11,20 +12,29 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #1a1a1a;
+            color: #f8f9fa;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            background-color: #2c2c2c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .card-header,
         .card-footer {
-            background-color: #f8f9fa;
+            background-color: #ff7f00;
+            color: #fff;
         }
 
-        .btn-custom {
-            color: #333;
-            border-color: #ced4da;
+        .card-body {
+            color: #fff;
         }
 
-        .btn-custom:hover {
-            background-color: #e9ecef;
+        h1 {
+            color: #ff7f00;
         }
 
         .btn-delete {
@@ -37,14 +47,34 @@
             background-color: #c82333;
             border-color: #bd2130;
         }
+
+        .btn-custom {
+            background-color: #ff7f00;
+            color: #fff;
+            border-color: #ff7f00;
+        }
+
+        .btn-custom:hover {
+            background-color: #e06b00;
+            border-color: #e06b00;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            margin-right: 15px;
+        }
     </style>
 </head>
 
-<body class="bg-light">
+<body>
 
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="fw-bold">Pedidos Pendientes</h1>
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('img/pixelcut.png') }}" alt="Logo" class="logo">
+                <h1 class="fw-bold">Pedidos Pendientes</h1>
+            </div>
             <div>
                 <!-- Puedes añadir aquí botones adicionales si es necesario -->
             </div>
@@ -55,11 +85,11 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="card shadow-sm">
                         <div class="card-header d-flex justify-content-between">
-                            <span class="text-muted">Pedido #{{ $pedido->id }}</span>
-                            <span class="text-muted">Mesa: {{ $pedido->mesa->numero }}</span>
+                            <span class="text-white">Pedido #{{ $pedido->id }}</span>
+                            <span class="text-white">Mesa: {{ $pedido->mesa->numero }}</span>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Detalles</h5>
+                            <h5 class="card-title text-white">Detalles</h5>
                             <ul class="list-unstyled">
                                 @foreach($pedido->detalles as $detalle)
                                     <li>
@@ -71,11 +101,10 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
                             <div>
-                                <span class="text-muted">Mesero: {{ $pedido->usuario->name }}</span>
-                                <span class="text-muted ms-3">Fecha: {{ $pedido->created_at->format('d-m-Y H:i') }}</span>
+                                <span class="text-white">Mesero: {{ $pedido->usuario->name }}</span>
+                                <span class="text-white ms-3">Fecha: {{ $pedido->created_at->format('d-m-Y H:i') }}</span>
                             </div>
                             <div>
-
                                 <form action="{{ route('pedidos.destroy', $pedido->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
@@ -101,6 +130,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Recargar la página cada 60 segundos (60000 milisegundos)
+    setInterval(function() {
+        location.reload();
+    }, 60000); // 60000 milisegundos = 1 minuto
+</script>
+
 </body>
 
 </html>

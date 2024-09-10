@@ -594,3 +594,135 @@ body {
 		min-width: 420px;
 	}
 }
+
+
+
+
+#mesas {
+    background-color: #e8f5e9;
+    border-left: 4px solid #43a047;
+}
+
+#mesas h1 {
+    color: #43a047;
+}
+
+/* Botón para agregar mesa */
+#btn-add-mesa {
+    background-color: #43a047;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-add-mesa:hover {
+    background-color: #388e3c;
+}
+
+/* Estilos para la tabla de mesas */
+#mesas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#mesas table th, #mesas table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+#mesas table th {
+    background-color: #43a047;
+    color: white;
+}
+
+#mesas table td {
+    background-color: white;
+}
+
+
+
+
+
+#pedidos-en-curso {
+    background-color: #f3e5f5;
+    border-left: 4px solid #8e24aa;
+}
+
+#pedidos-en-curso h1 {
+    color: #8e24aa;
+}
+
+/* Estilos para la tabla de pedidos */
+#pedidos-en-curso table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#pedidos-en-curso table th, #pedidos-en-curso table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+#pedidos-en-curso table th {
+    background-color: #8e24aa;
+    color: white;
+}
+
+#pedidos-en-curso table td {
+    background-color: white;
+}
+
+
+
+#personal {
+    background-color: #e3f2fd;
+    border-left: 4px solid #1976d2;
+}
+
+#personal h1 {
+    color: #1976d2;
+}
+
+/* Tabla de usuarios */
+#personal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#personal table th, #personal table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+#personal table th {
+    background-color: #d24d19;
+    color: white;
+}
+
+#personal table td {
+    background-color: white;
+}
+
+/* Botón de agregar usuario */
+#btn-add-user {
+    background-color: #d24d19;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-add-user:hover {
+    background-color: #1565c0;
+}
