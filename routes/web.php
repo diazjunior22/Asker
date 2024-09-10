@@ -1,5 +1,5 @@
 <?php
-
+//hola brother
 // use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdmController;
 use Illuminate\Support\Facades\Route;
