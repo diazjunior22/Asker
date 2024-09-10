@@ -72,7 +72,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="d-flex align-items-center">
-                <img src="{{ asset('img/pixelcut.png') }}" alt="Logo" class="logo">
+                <img src="{{ asset('imggkit/pixelcut.png') }}" alt="Logo" class="logo">
                 <h1 class="fw-bold">Pedidos Pendientes</h1>
             </div>
             <div>
